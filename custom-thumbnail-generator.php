@@ -10,3 +10,7 @@
  * Text Domain: custom-thumbnail-generator
  * Method Prefix: ctg_
  */
+
+ if( ! defined( 'ABSPATH' ) ) exit;
+
+ require_once plugin_dir_path( __FILE__ ) . 'includes/init.php';
