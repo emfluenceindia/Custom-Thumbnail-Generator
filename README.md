@@ -1,4 +1,5 @@
 === Persisting Thumbnail Generator ===
+
 Contributors: Subrata Sarkar
 Tags: media, thumbnail, regenerate, custom image size
 Requires at least: 5.6
