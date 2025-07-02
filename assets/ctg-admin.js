@@ -6,6 +6,9 @@ jQuery( document ).ready( function( $ ) {
     $( '#ctg-form' ).on( 'submit', function( e ) {
         e.preventDefault();
         let data = $(this).serialize();
+        
+        // Debugging...
+        console.log(data);
 
         $.post( CTGVARS.ajax_url, {
             action: 'ctg_add_custom_size',

@@ -26,7 +26,7 @@
     <div class="wrap">
         <h1>Create and register theme-independent Custom Image Sizes</h1>
         <hr />
-        <form id="ctg-form">
+        <form id="ctg-form" method="post">
             <table class="form-table">
                 <tr>
                     <th>Width</th>
