@@ -1,0 +1,33 @@
+.ctg-list-table th {
+    background: #046491;
+    color: #ffffff !important;
+}
+
+.ctg-list-table td {
+    border-bottom: 1px solid #bebbbb;
+}
+
+.ctg-list-table td.ctg-title-cell {
+    text-transform: capitalize;
+    width: 20%;
+}
+
+.ctg-list-table .ctg-text-right {
+    text-align: right;
+}
+
+.ctg-list-table .ctg-text-center {
+    text-align: center;
+}
+
+.ctg-list-table td span {
+    font-size: 16px;
+}
+
+.ctg-list-table td span.yes {
+    color: #047216
+}
+
+.ctg-list-table td span.no {
+    color: #8d051b
+}

@@ -28,7 +28,7 @@
  }
 
  function ctg_remove_custom_size() {
-    check_ajax_referer( 'ctg_custom_image_sizes' );
+    check_ajax_referer( 'ctg_nonce' );
     $slug = sanitize_text_field( $_POST['slug'] );
 
     $sizes = get_option( 'ctg_custom_image_sizes', array() );
@@ -39,8 +39,4 @@
     }
 
     wp_send_json_success();
- }
-
- function ctg_regenerate_thumbnails() {
-
  }
