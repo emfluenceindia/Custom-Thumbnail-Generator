@@ -21,15 +21,18 @@
   */
  function ctg_render_settngs_page() {
     $sizes = get_option( 'ctg_custom_image_sizes' );
-    
-    if( file_exists( CTG_PLUGIN_PATH . 'includes/settngs-page.html' ) ) {
-        $html      = file_get_contents( CTG_PLUGIN_PATH . 'includes/settings-page.html' );
-        $size_list = ctg_get_size_list_table( $sizes );
 
-        // Replace {{size-list-loop}} variable with PHP loop
-        str_replace( $html, '{{size-list-loop}}', $size_list );
-        echo wp_kses_post( $html, 'custom-thumbnail-generator' );
+    $html      = file_get_contents( CTG_PLUGIN_PATH . 'settings-page.html' );
+    // $size_list = ctg_get_size_list_table( $sizes );
+    $size_list = array(
+        'size_table' => ctg_get_size_list_table( $sizes )
+    );
+
+    foreach( $size_list as $key => $value ) {
+        $html = str_replace( '{{' . $key . '}}', $value, $html );
     }
+
+    echo $html;
 
     wp_enqueue_script( 
         'ctg-admin-js', 
@@ -51,13 +54,13 @@
  function ctg_get_size_list_table( $sizes ) {
     $size_table_html = '';
 
-    foreach( $sizes as $slug => $size ) {
-        $size_table_html.= '<td>' . esc_html( $slug ) . '</td>';
-        $size_table_html.= '<td>' . esc_html( $size[ 'width' ] ) . '</td>';
-        $size_table_html.= '<td>' . esc_html( $size[ 'height' ] ) . '</td>';
-        $size_table_html.= '<td>' . $size[ 'crop' ] ? 'Yes' : 'No' . '</td>';
-        $size_table_html.= '<td><button data-slug="' . esc_html( $slug ) . '" class="button delete-size">Remove</button></td>';
-    }
+    // foreach( $sizes as $slug => $size ) {
+    //     $size_table_html.= '<td>' . esc_html( $slug ) . '</td>';
+    //     $size_table_html.= '<td>' . esc_html( $size[ 'width' ] ) . '</td>';
+    //     $size_table_html.= '<td>' . esc_html( $size[ 'height' ] ) . '</td>';
+    //     $size_table_html.= '<td>' . $size[ 'crop' ] ? 'Yes' : 'No' . '</td>';
+    //     $size_table_html.= '<td><button data-slug="' . esc_html( $slug ) . '" class="button delete-size">Remove</button></td>';
+    // }
     
-    return $size_table_html === '' ? '<td colspan="6">No custom image size found!</td>' : $size_table_html;
+    return $size_table_html === '' ? '<td class="ctg-warning" colspan="6">No custom image size found. Add one now.</td>' : $size_table_html;
  }

@@ -3,6 +3,12 @@
     <form id="ctg-form">
         <table class="form-table">
             <tr>
+                <th>Size title</th>
+                <td>
+                    <input type="text" name="ctg-title" id="ctg-title" required />
+                </td>
+            </tr>
+            <tr>
                 <th>Width</th>
                 <td>
                     <input type="number" name="ctg-width" id="ctg-width" required />
@@ -16,7 +22,7 @@
             </tr>
             <tr>
                 <th>
-                    <label for="ctg-crop">Allow crop?</label>
+                    <label for="ctg-crop">Allow crop</label>
                 </th>
                 <td>
                     <input type="checkbox" name="ctg-crop" id="ctg-crop" value="1" />
@@ -41,7 +47,7 @@
         </thead>
         <tbody id="ctg-sizes-list">
             <tr>
-                {{size-list-loop}}
+                {{size_table}}
             </tr>
         </tbody>
     </table>
