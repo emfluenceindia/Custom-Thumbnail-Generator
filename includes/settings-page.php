@@ -20,7 +20,7 @@
   * HTML to render on Settings page
   */
  function ctg_render_settngs_page() {
-    $sizes = get_option( 'ctg_custom_image_sizes' );
+    $sizes = get_option( 'ctg_custom_image_sizes', array() );
 
     $html      = file_get_contents( CTG_PLUGIN_PATH . 'settings-page.html' );
     // $size_list = ctg_get_size_list_table( $sizes );
