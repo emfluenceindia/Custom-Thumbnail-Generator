@@ -7,6 +7,8 @@
  define( 'CTG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  define( 'CTG_PLUGIN_DIR', dirname( plugin_dir_url( __FILE__ ) ) );
 
+ define ( 'WP_NATIVE_THUMB_SIZES', [ 'thumbnail', 'medium', 'medium_large', 'large' ] );
+
  register_activation_hook( __FILE__, 'ctg_activate_plugin' );
  register_deactivation_hook( __FILE__, 'ctg_deactivate_plugin' );
  register_uninstall_hook( __FILE__, 'ctg_uninstall_plugin' );

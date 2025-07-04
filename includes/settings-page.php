@@ -70,9 +70,17 @@
                 <?php
                 if( ! empty( $default_sizes ) ) {
                     foreach( $default_sizes as $slug => $size ) { 
-                        if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
+                        if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes.
+
+                        // if( in_array( $slug, WP_NATIVE_THUMB_SIZES ) ) {
+                        //     $slug = esc_html( $slug ) . "<br /><i class='ctg-image-size-register-by'>Registered by WordPress core</i>";
+                        // } else {
+                        //     $slug = esc_html( $slug ) . "<br /><i class='ctg-image-size-register-by'>Registered by " . wp_get_theme()->get( 'Name' );
+                        // }
+                        ?>
+
                         <tr>
-                            <td class="ctg-title-cell"><?php echo esc_html( $slug ); ?> </td>
+                            <td class="ctg-title-cell"><?php echo ctg_get_size_table_title( $slug ); ?> </td>
                             <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
                             <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
                             <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
@@ -83,7 +91,7 @@
                 ?>
                 <?php foreach( $sizes as $slug => $size ): ?>
                     <tr class="ctg-custom-sizes-row">
-                         <td class="ctg-title-cell"><?php echo esc_html( $slug ); ?> </td>
+                         <td class="ctg-title-cell"><?php echo wp_kses_post( $slug . "<br /><i class='ctg-image-size-register-by'>Registered by Custom Thumbnail Generator</i>" ); ?> </td>
                          <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
                          <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
                          <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
@@ -153,4 +161,14 @@
     }
 
     return $sizes;
+ }
+
+ function ctg_get_size_table_title( $slug ) {
+    if( in_array( $slug, WP_NATIVE_THUMB_SIZES ) ) {
+        $slug = wp_kses_post( $slug . "<br /><i class='ctg-image-size-register-by'>Registered by WordPress core</i>" );
+    } else {
+        $slug = wp_kses_post( $slug . "<br /><i class='ctg-image-size-register-by'>Registered by " . wp_get_theme()->get( 'Name' ) );
+    }
+
+    return $slug;
  }
