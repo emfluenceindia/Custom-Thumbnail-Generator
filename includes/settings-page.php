@@ -69,7 +69,8 @@
             <tbody id="ctg-sizes-list">
                 <?php
                 if( ! empty( $default_sizes ) ) {
-                    foreach( $default_sizes as $slug => $size ) { ?>
+                    foreach( $default_sizes as $slug => $size ) { 
+                        if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
                         <tr>
                             <td class="ctg-title-cell"><?php echo esc_html( $slug ); ?> </td>
                             <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
@@ -81,12 +82,12 @@
                 }
                 ?>
                 <?php foreach( $sizes as $slug => $size ): ?>
-                    <tr>
-                         <td><?php echo esc_html( $slug ); ?> </td>
-                         <td><?php echo esc_html( $size[ 'width' ] ); ?></td>
-                         <td><?php echo esc_html( $size[ 'height' ] ); ?></td>
-                         <td><?php echo $size[ 'crop' ] ? '&#10003' : 'No'; ?></td>
-                         <td><button data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-delete-custom-size">Remove</button></td>
+                    <tr class="ctg-custom-sizes-row">
+                         <td class="ctg-title-cell"><?php echo esc_html( $slug ); ?> </td>
+                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
+                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
+                         <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
+                         <td class="ctg-text-center"><button data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-delete-custom-size">Remove</button></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

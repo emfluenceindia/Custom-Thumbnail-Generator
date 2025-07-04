@@ -5,10 +5,10 @@
 
 .ctg-list-table td {
     border-bottom: 1px solid #bebbbb;
+    vertical-align: middle;
 }
 
 .ctg-list-table td.ctg-title-cell {
-    text-transform: capitalize;
     width: 20%;
 }
 
@@ -30,4 +30,9 @@
 
 .ctg-list-table td span.no {
     color: #8d051b
+}
+
+.ctg-list-table tr.ctg-custom-sizes-row {
+    background-color: #dfcefe;
+    font-weight: bold;
 }
