@@ -22,19 +22,19 @@
 
     $sizes = get_option( 'ctg_custom_image_sizes', array() );;
 
-    if( isset( $sizes[ 'slug' ] ) ) {
-        wp_send_json_error( 'Size already exists' );
+    $str_message = "";
+
+    if( isset( $sizes[ $slug ] ) ) {
+        $str_message = "The requested thumbnail size ($width px x $height px) already exists!";
+        wp_send_json_error( $str_message );
+        die();
     }
 
     $sizes[ $slug ] = compact( 'width', 'height', 'crop' );
     update_option( 'ctg_custom_image_sizes', $sizes );
 
-    // Debugging...
-    $sizes = get_option( 'ctg_custom_image_sizes', array() );;
-    var_dump( $sizes );
-    die();
-
-    wp_send_json_success( $sizes );
+    $str_message = "The requested thumbnail size ($width px x $height px) has been generated";
+    wp_send_json_success( $str_message );
  }
 
  function ctg_remove_custom_size() {
