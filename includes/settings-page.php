@@ -70,14 +70,7 @@
                 <?php
                 if( ! empty( $default_sizes ) ) {
                     foreach( $default_sizes as $slug => $size ) { 
-                        if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes.
-
-                        // if( in_array( $slug, WP_NATIVE_THUMB_SIZES ) ) {
-                        //     $slug = esc_html( $slug ) . "<br /><i class='ctg-image-size-register-by'>Registered by WordPress core</i>";
-                        // } else {
-                        //     $slug = esc_html( $slug ) . "<br /><i class='ctg-image-size-register-by'>Registered by " . wp_get_theme()->get( 'Name' );
-                        // }
-                        ?>
+                        if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
 
                         <tr>
                             <td class="ctg-title-cell"><?php echo ctg_get_size_table_title( $slug ); ?> </td>
@@ -113,13 +106,13 @@
     wp_enqueue_script( 
         'ctg-admin-js', 
         CTG_PLUGIN_DIR . '/assets/ctg-admin.js', 
-        [ 'jquery' ], '1.0', true 
+        [ 'jquery' ], '1.0', true
     );
 
     wp_localize_script(
         'ctg-admin-js', 'CTGVARS', array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'nonce'    => wp_create_nonce( 'ctg_nonce' ),
+            'nonce'    => wp_create_nonce(),
         )
     );
 

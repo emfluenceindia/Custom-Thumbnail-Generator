@@ -9,13 +9,14 @@ jQuery( document ).ready( function( $ ) {
         
         // Debugging...
         console.log(data);
+        //return;
 
         $.post( CTGVARS.ajax_url, {
             action: 'ctg_add_custom_size',
-            nonce: CTGVARS.nonce,
+            _wpnonce: CTGVARS.nonce,
             ...Object.fromEntries( new URLSearchParams( data ) )
         }, function( response ) {
-            if( response.success ) location.reload();
+            if( response.success ) { console.log( response.data ); /*location.reload();*/ }
             else alert( response.data );
         } );
     } );
