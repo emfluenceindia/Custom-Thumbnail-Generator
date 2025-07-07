@@ -5,19 +5,29 @@ jQuery( document ).ready( function( $ ) {
     // Add a custom size
     $( '#ctg-form' ).on( 'submit', function( e ) {
         e.preventDefault();
-        let data = $(this).serialize();
+        let formData = $(this).serialize();
+        const responseContainer = $( '#ctg-form-response' );
         
         // Debugging...
-        console.log(data);
-        //return;
+        console.log(formData);
+        // return;
 
         $.post( CTGVARS.ajax_url, {
             action: 'ctg_add_custom_size',
-            _wpnonce: CTGVARS.nonce,
-            ...Object.fromEntries( new URLSearchParams( data ) )
+            // _wpnonce: CTGVARS.nonce,
+            ...Object.fromEntries( new URLSearchParams( formData ) )
         }, function( response ) {
-            if( response.success ) { console.log( response.data ); /*location.reload();*/ }
-            else alert( response.data );
+            console.log( response );
+            return;
+            if( response.success ) { 
+                console.log( response.data ); /*location.reload();*/ 
+                $( responseContainer ).html( '<p style="color: green">New thumbnail size added.</p>' )
+            }
+            else {
+                $( responseContainer ).html( '<p style="color: green">Error adding new thumbnail size.</p>' )
+            }
+        } ).fail( function() {
+            $( responseContainer ).html( 'Unknown error! Request failed.' );
         } );
     } );
 

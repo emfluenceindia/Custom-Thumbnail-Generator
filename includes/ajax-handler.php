@@ -3,12 +3,12 @@
  * Handles AJAX requests
  */
 
- add_action( 'wp_ajax_ctg_add_custom_size', 'ctg_add_custom_size' );
+ add_action( 'wp_ajax_ctg_add_custom_size', 'ctg_ajax_add_custom_size' );
  add_action( 'wp_ajax_ctg_remove_custom_size', 'ctg_remove_custom_size' );
  add_action( 'wp_ajax_ctg_regenerate_thumbnails', 'ctg_regenerate_thumbnails' );
 
- function ctg_add_custom_size() {
-    check_ajax_referer( 'ctg_nonce' );
+ function ctg_ajax_add_custom_size() {
+    check_ajax_referer( 'ctg_form_action', 'ctg_form_nonce' );
 
     $width  = absint( sanitize_text_field( $_POST[ 'ctg-width' ] ) );
     $height = absint( sanitize_text_field( $_POST[ 'ctg-height' ] ) );

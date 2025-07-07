@@ -31,13 +31,13 @@
                 <tr>
                     <th>Width</th>
                     <td>
-                        <input type="number" name="ctg-width" id="ctg-width" required />
+                        <input type="number" name="ctg-width" id="ctg-width" required /> px
                     </td>
                 </tr>
                 <tr>
                     <th>Height</th>
                     <td>
-                        <input type="number" name="ctg-height" id="ctg-height" required />
+                        <input type="number" name="ctg-height" id="ctg-height" required /> px
                     </td>
                 </tr>
                 <tr>
@@ -48,8 +48,14 @@
                         <input type="checkbox" name="ctg-crop" id="ctg-crop" value="1" />
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="2">
+                        <?php wp_nonce_field( 'ctg_form_action', 'ctg_form_nonce' ); ?>
+                    </td>
+                </tr>
             </table>
             <input type="submit" value="Add Image Size" class="button button-primary" id="ctg-addsise" name="ctg-addsize" />
+            <div id="ctg-form-response"><!-- AJAX response appears here --></div>
         </form>
 
         <hr />
@@ -99,7 +105,7 @@
         <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
     </div>
 
-    <?php 
+    <?php
     /**
      * Enqueue scripts and style
      */
@@ -112,7 +118,7 @@
     wp_localize_script(
         'ctg-admin-js', 'CTGVARS', array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'nonce'    => wp_create_nonce(),
+            // 'nonce'    => wp_nonce_field( 'ctg-nonce' ),
         )
     );
 
