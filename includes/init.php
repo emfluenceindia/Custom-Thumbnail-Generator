@@ -16,6 +16,7 @@
  require_once CTG_PLUGIN_PATH . 'settings-page.php';
  require_once CTG_PLUGIN_PATH . 'thumbnail-manager.php';
  require_once CTG_PLUGIN_PATH . 'ajax-handler.php';
+ require_once CTG_PLUGIN_PATH . 'ctg-functions.php';
 
  /**
   * Plugin activation
