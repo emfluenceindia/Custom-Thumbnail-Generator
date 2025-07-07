@@ -15,11 +15,6 @@
     $crop   = sanitize_text_field( isset( $_POST[ 'ctg-crop' ] ) );
     $slug   = 'ctg_' . $width . 'x' . $height;
 
-    // $width  = absint( sanitize_text_field( $_REQUEST[ 'ctg-width' ] ) );
-    // $height = absint( sanitize_text_field( $_REQUEST[ 'ctg-height' ] ) );
-    // $crop   = sanitize_text_field( isset( $_REQUEST[ 'ctg-crop' ] ) );
-    // $slug   = 'ctg_' . $width . 'x' . $height;
-
     $sizes = get_option( 'ctg_custom_image_sizes', array() );;
 
     $str_message = "";

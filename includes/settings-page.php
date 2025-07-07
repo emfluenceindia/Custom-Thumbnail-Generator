@@ -58,54 +58,20 @@
             <div id="ctg-form-response"><!-- AJAX response appears here --></div>
         </form>
 
-        <hr />
-
-        <h2>Registered Image Sizes</h2>
-
-        <table class="widefat ctg-list-table">
-            <thead>
-                <tr>
-                    <th class="ctg-title-cell">Name</th>
-                    <th class="ctg-text-center">Width</th>
-                    <th class="ctg-text-center">Height</th>
-                    <th class="ctg-text-center">Crop</th>
-                    <th class="ctg-text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody id="ctg-sizes-list">
-                <?php
-                if( ! empty( $default_sizes ) ) {
-                    foreach( $default_sizes as $slug => $size ) { 
-                        if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
-
-                        <tr>
-                            <td class="ctg-title-cell"><?php echo ctg_get_size_table_title( $slug ); ?> </td>
-                            <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
-                            <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
-                            <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
-                            <td class="ctg-text-center"><button data-slug="<?php echo esc_attr( $slug ); ?>" disabled class="button ctg-delete-custom-size">Remove</button></td>
-                        </tr>
-                    <?php }
-                }
-                ?>
-                <?php foreach( $sizes as $slug => $size ): ?>
-                    <tr class="ctg-custom-sizes-row">
-                         <td class="ctg-title-cell"><?php echo wp_kses_post( $slug . "<br /><i class='ctg-image-size-register-by'>Registered by Custom Thumbnail Generator</i>" ); ?> </td>
-                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
-                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
-                         <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
-                         <td class="ctg-text-center"><button data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-delete-custom-size">Remove</button></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <?php ctg_render_thumbnail_list_table(); ?>
 
         <hr />
 
         <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
     </div>
 
-    <?php
+    <?php ctg_enqueue_and_localize_scripts();
+ }
+
+ /**
+  * Enqueue scripts and CSS
+  */
+ function ctg_enqueue_and_localize_scripts() {
     /**
      * Enqueue scripts and style
      */
@@ -128,6 +94,57 @@
         null,
         '1.0'
     );
+ }
+
+ /**
+  * Render registered thumbnail sizes table
+  */
+ function ctg_render_thumbnail_list_table() {
+    $default_sizes = ctg_default_and_theme_based_image_sizes();
+    $sizes         = get_option( 'ctg_custom_image_sizes', array() ); ?>
+
+    <hr />
+    <h2>Registered Image Sizes</h2>
+
+    <table class="widefat ctg-list-table">
+        <thead>
+            <tr>
+                <th class="ctg-title-cell">Name</th>
+                <th class="ctg-text-center">Width</th>
+                <th class="ctg-text-center">Height</th>
+                <th class="ctg-text-center">Crop</th>
+                <th class="ctg-text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody id="ctg-sizes-list">
+            <?php
+            if( ! empty( $default_sizes ) ) {
+                foreach( $default_sizes as $slug => $size ) { 
+                    if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
+
+                    <tr>
+                        <td class="ctg-title-cell"><?php echo ctg_get_size_table_title( $slug ); ?> </td>
+                        <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
+                        <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
+                        <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
+                        <td class="ctg-text-center"><button data-slug="<?php echo esc_attr( $slug ); ?>" disabled class="button ctg-delete-custom-size">Remove</button></td>
+                    </tr>
+                <?php }
+            }
+            ?>
+            <?php foreach( $sizes as $slug => $size ): ?>
+                <tr class="ctg-custom-sizes-row">
+                        <td class="ctg-title-cell"><?php echo wp_kses_post( $slug . "<br /><i class='ctg-image-size-register-by'>Registered by Custom Thumbnail Generator</i>" ); ?> </td>
+                        <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
+                        <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
+                        <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
+                        <td class="ctg-text-center"><button data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-delete-custom-size">Remove</button></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <?php
  }
 
  /**
