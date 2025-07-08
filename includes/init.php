@@ -6,6 +6,7 @@
  define( 'CTG_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
  define( 'CTG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  define( 'CTG_PLUGIN_DIR', dirname( plugin_dir_url( __FILE__ ) ) );
+ define( 'CTG_TEMPLATE_DIR', plugin_dir_path( __DIR__ ) . 'templates/' );
 
  define ( 'WP_NATIVE_THUMB_SIZES', [ 'thumbnail', 'medium', 'medium_large', 'large' ] );
 

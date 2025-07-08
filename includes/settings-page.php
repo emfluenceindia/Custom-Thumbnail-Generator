@@ -24,44 +24,12 @@
     $sizes         = get_option( 'ctg_custom_image_sizes', array() ); ?>
 
     <div class="wrap">
-        <h1>Create and register theme-independent Custom Image Sizes</h1>
-        <hr />
-        <form id="ctg-form" method="post">
-            <table class="form-table">
-                <tr>
-                    <th>Width</th>
-                    <td>
-                        <input type="number" name="ctg-width" id="ctg-width" required /> px
-                    </td>
-                </tr>
-                <tr>
-                    <th>Height</th>
-                    <td>
-                        <input type="number" name="ctg-height" id="ctg-height" required /> px
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <label for="ctg-crop">Allow crop</label>
-                    </th>
-                    <td>
-                        <input type="checkbox" name="ctg-crop" id="ctg-crop" value="1" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <?php wp_nonce_field( 'ctg_form_action', 'ctg_form_nonce' ); ?>
-                    </td>
-                </tr>
-            </table>
-            <input type="submit" value="Add Image Size" class="button button-primary" id="ctg-addsise" name="ctg-addsize" />
-            <div id="ctg-form-response"><!-- AJAX response appears here --></div>
-        </form>
-
-        <?php ctg_render_thumbnail_list_table(); ?>
+        <?php
+        echo ctg_render_settings_page_form();
+        ctg_render_thumbnail_list_table();
+        ?>
 
         <hr />
-
         <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
     </div>
 

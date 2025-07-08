@@ -19,7 +19,7 @@ jQuery( document ).ready( function( $ ) {
             console.log( response );
             if( response.success ) { 
                 $( ctgWidth ).val("");
-                $( ctgLength ).val("");
+                $( ctgHeight ).val("");
                 $( ctgCrop ).prop("checked", false);
 
                 $( responseContainer ).html( '<p style="color: green">New thumbnail size added.</p>' )

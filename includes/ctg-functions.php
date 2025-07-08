@@ -121,3 +121,21 @@
 
     return $slug;
  }
+
+ /**
+  * Render Form
+  */
+  function ctg_render_settings_page_form() {
+    $html_template = CTG_TEMPLATE_DIR . 'ctg-form.html.php';
+    
+    if( ! file_exists( $html_template ) ) {
+        echo '<p class="ctg-common-error">Error! Template file missing.</p>';
+        return;
+    }
+
+    ob_start();
+    include( $html_template );
+    // $form_content = file_get_contents( $html_template );
+    $form_content = ob_get_clean();
+    return $form_content;
+  }
