@@ -30,11 +30,9 @@
   * Render registered thumbnail sizes table
   */
  function ctg_render_thumbnail_list_table() {
-    $default_sizes = ctg_default_and_theme_based_image_sizes();
-    $sizes         = get_option( 'ctg_custom_image_sizes', array() ); ?>
-
+    $default_sizes = ctg_default_and_theme_based_image_sizes(); ?>
     <hr />
-    <h2>Registered Thumbnail Sizes</h2>
+    <h2>Other Thumbnails (registered by WordPress and the theme)</h2>
 
     <table class="widefat ctg-list-table">
         <thead>
@@ -62,15 +60,6 @@
                 <?php }
             }
             ?>
-            <?php foreach( $sizes as $slug => $size ): ?>
-                <tr class="ctg-custom-sizes-row">
-                        <td class="ctg-title-cell"><?php echo wp_kses_post( $slug . "<br /><i class='ctg-image-size-register-by'>Registered by Custom Thumbnail Generator</i>" ); ?> </td>
-                        <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
-                        <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
-                        <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
-                        <td class="ctg-text-center"><button data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-delete-custom-size">Remove</button></td>
-                </tr>
-            <?php endforeach; ?>
         </tbody>
     </table>
 
@@ -138,4 +127,11 @@
     // $form_content = file_get_contents( $html_template );
     $form_content = ob_get_clean();
     return $form_content;
+  }
+
+  /**
+   * Render list of custom thumbnails registered by Custom Thumbnail Generator plugin
+   */
+  function ctg_render_plugin_generated_thmbnail_list() {
+    
   }
