@@ -1,5 +1,5 @@
 <!-- Form the add nre thumbnail size -->
-<h1>Create Custom Image Sizes</h1>
+<h1>Create Custom Thumbnail Sizes</h1>
 <hr />
 <p style="width: 72%;">
     <strong>Custom Thumbnail Generator</strong> ensures that all custom thumbnail sizes 

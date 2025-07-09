@@ -9,7 +9,7 @@
     add_submenu_page(
         'options-general.php',
         'Custom Image Sizes',
-        'Image Sizes',
+        'Custom Thumbnail Generator',
         'manage_options',
         'ctg-custom-sizes',
         'ctg_render_settngs_page'

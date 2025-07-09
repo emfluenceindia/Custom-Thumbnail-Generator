@@ -34,7 +34,7 @@
     $sizes         = get_option( 'ctg_custom_image_sizes', array() ); ?>
 
     <hr />
-    <h2>Registered Image Sizes</h2>
+    <h2>Registered Thumbnail Sizes</h2>
 
     <table class="widefat ctg-list-table">
         <thead>
