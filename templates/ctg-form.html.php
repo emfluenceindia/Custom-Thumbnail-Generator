@@ -44,7 +44,10 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <?php echo wp_nonce_field( 'ctg_form_action', 'ctg_form_nonce' ); ?>
+                                <?php
+                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                echo wp_nonce_field( 'ctg_form_action', 'ctg_form_nonce' );
+                                ?>
                             </td>
                         </tr>
                     </table>

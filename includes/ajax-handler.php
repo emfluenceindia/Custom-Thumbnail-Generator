@@ -10,8 +10,14 @@
  function ctg_ajax_add_custom_size() {
     check_ajax_referer( 'ctg_form_action', 'ctg_form_nonce' );
 
-    $width  = absint( sanitize_text_field( $_POST[ 'ctg-width' ] ) );
-    $height = absint( sanitize_text_field( $_POST[ 'ctg-height' ] ) );
+    $fld_validation_message = __( 'Not all field values are supplied!', 'custom-thumbnail-generator' );
+
+    if( ! isset( $_POST[ 'ctg-width' ] ) || ! isset( $_POST[ 'ctg-height' ] ) ) {
+        wp_send_json_error( $fld_validation_message );
+    }
+
+    $width  = absint( sanitize_text_field( wp_unslash( $_POST[ 'ctg-width' ] ) ) );
+    $height = absint( sanitize_text_field( wp_unslash( $_POST[ 'ctg-height' ] ) ) );
     $crop   = sanitize_text_field( isset( $_POST[ 'ctg-crop' ] ) );
     $slug   = 'ctg_' . $width . 'x' . $height;
 
@@ -34,7 +40,12 @@
 
  function ctg_remove_custom_size() {
     check_ajax_referer( 'ctg_nonce' );
-    $slug = sanitize_text_field( $_POST['slug'] );
+    
+    if( ! isset( $_POST['slug'] ) || empty( $_POST['slug'] ) ) {
+        wp_send_json_error( 'There has been a critical error! Plase trye again later.' );
+    }
+
+    $slug = sanitize_text_field( wp_unslash( $_POST['slug'] ) );
 
     $sizes = get_option( 'ctg_custom_image_sizes', array() );
 

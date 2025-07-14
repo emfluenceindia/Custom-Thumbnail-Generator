@@ -8,7 +8,20 @@
  define( 'CTG_PLUGIN_DIR', dirname( plugin_dir_url( __FILE__ ) ) );
  define( 'CTG_TEMPLATE_DIR', plugin_dir_path( __DIR__ ) . 'templates/' );
 
- define ( 'WP_NATIVE_THUMB_SIZES', [ 'thumbnail', 'medium', 'medium_large', 'large' ] );
+ define( 'WP_NATIVE_THUMB_SIZES', [ 'thumbnail', 'medium', 'medium_large', 'large' ] );
+
+ define( 'ALLOWED_TAGS', array(
+  'form'     => [ 'action' => [], 'method' => [], 'id' => [], 'class' => [] ],
+  'input'    => [ 'type' => [], 'name' => [], 'value' => [], 'checked' => [], 'id' => [], 'class' => [] ],
+  'select'   => [ 'name' => [], 'id' => [], 'class' => [] ],
+  'option'   => [ 'value' => [], 'selected' => [] ],
+  'textarea' => [ 'name' => [], 'id' => [], 'class' => [] ],
+  'label'    => [ 'for' => [], 'class' => [] ],
+  'div'      => [ 'class' => [], 'id' => [] ],
+  'span'     => [ 'class' => [] ],
+  'p'        => [],
+  'button'   => [ 'type' => [], 'class' => [], 'name' => [], 'value' => [] ]
+ ) );
 
  register_activation_hook( __FILE__, 'ctg_activate_plugin' );
  register_deactivation_hook( __FILE__, 'ctg_deactivate_plugin' );

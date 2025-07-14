@@ -51,7 +51,7 @@
                     if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
 
                     <tr>
-                        <td class="ctg-title-cell"><?php echo ctg_get_size_table_title( $slug ); ?> </td>
+                        <td class="ctg-title-cell"><?php echo esc_html( ctg_get_size_table_title( $slug ) ); ?> </td>
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
                         <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>

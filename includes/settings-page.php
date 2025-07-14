@@ -25,6 +25,7 @@
 
     <div class="wrap">
         <?php
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo ctg_render_settings_page_form();
         ctg_render_thumbnail_list_table();
         ?>
