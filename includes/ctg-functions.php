@@ -32,7 +32,7 @@
  function ctg_render_thumbnail_list_table() {
     $default_sizes = ctg_default_and_theme_based_image_sizes(); ?>
     <hr />
-    <h2>Other Thumbnails (registered by WordPress and the theme)</h2>
+    <h2>Default and Theme-generated Thumbnails</h2>
 
     <table class="widefat ctg-list-table">
         <thead>

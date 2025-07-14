@@ -1,5 +1,5 @@
 <!-- Form the add nre thumbnail size -->
-<h1>Create Custom Thumbnail Sizes</h1>
+<h1>Create Custom Thumbnails</h1>
 <hr />
 <p>
     <strong>Custom Thumbnail Generator</strong> ensures that all custom thumbnail sizes 
@@ -39,7 +39,7 @@
                         <tr>
                             <td>&nbsp;</td>
                             <td>
-                                <input type="submit" value="Add New Thumbnail Size" class="button button-primary" id="ctg-addsise" name="ctg-addsize" />
+                                <input type="submit" value="Add New Thumbnail" class="button button-primary" id="ctg-addsise" name="ctg-addsize" />
                             </td>
                         </tr>
                         <tr>
@@ -57,7 +57,7 @@
             </fieldset>
         </td>
         <td class="ctg-thumbs-cell">
-            <h2>Created by Custom Thumbnail Generator</h2>
+            <h2>Custom Thumbnails</h2>
             <table class="widefat ctg-list-table ctg-custom-size-list">
                 <thead>
                     <tr>
