@@ -32,7 +32,7 @@
  function ctg_render_thumbnail_list_table() {
     $default_sizes = ctg_default_and_theme_based_image_sizes(); ?>
     <hr />
-    <h2>Default and Theme-generated Thumbnails</h2>
+    <h2>Default Thumbnails</h2>
 
     <table class="widefat ctg-list-table">
         <thead>
@@ -41,7 +41,6 @@
                 <th class="ctg-text-center">Width</th>
                 <th class="ctg-text-center">Height</th>
                 <th class="ctg-text-center">Crop</th>
-                <th class="ctg-text-center">Action</th>
             </tr>
         </thead>
         <tbody id="ctg-sizes-list">
@@ -55,7 +54,6 @@
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
                         <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
-                        <td class="ctg-text-center"><button data-slug="<?php echo esc_attr( $slug ); ?>" disabled class="button ctg-delete-custom-size">Remove</button></td>
                     </tr>
                 <?php }
             }
