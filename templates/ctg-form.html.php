@@ -1,5 +1,5 @@
 <!-- Form the add nre thumbnail size -->
-<h1>Create Custom Thumbnails</h1>
+<h1>Custom Thumbnail Generator</h1>
 <hr />
 <p>
     <strong>Custom Thumbnail Generator</strong> ensures that all custom thumbnail sizes 
@@ -56,7 +56,7 @@
                 </form>
             </fieldset>
             <div>
-                <p>Some of your previous attachments may be missing <br />Custom Thumbnail Generator thumbnail sizes.</p>
+                <p>Some of your previous attachments may be missing <br />Custom Thumbnail Generator thumbnails.</p>
             </div>
             <div>
                 <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
