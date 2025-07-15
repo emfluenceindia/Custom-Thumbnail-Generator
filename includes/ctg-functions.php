@@ -39,6 +39,7 @@
                 <th class="ctg-title-cell">Name</th>
                 <th class="ctg-text-center">Width</th>
                 <th class="ctg-text-center">Height</th>
+                <th class="ctg-text-center">Source</th>
                 <th class="ctg-text-center">Crop</th>
             </tr>
         </thead>
@@ -49,9 +50,10 @@
                     if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
 
                     <tr>
-                        <td class="ctg-title-cell"><?php echo wp_kses_post( ctg_get_size_table_title( $slug ) ); ?> </td>
+                        <td class="ctg-title-cell"><?php echo esc_html( $slug ); ?> </td>
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
+                        <td class="ctg-text-center"><?php echo wp_kses_post( ctg_get_size_table_title( $slug ) ); ?></td>
                         <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
                     </tr>
                 <?php }
@@ -100,9 +102,9 @@
  */
  function ctg_get_size_table_title( $slug ) {
     if( in_array( $slug, WP_NATIVE_THUMB_SIZES ) ) {
-        $slug = wp_kses_post( $slug . "<br /><i class='ctg-image-size-register-by'>Registered by WordPress core</i>" );
+        $slug = wp_kses_post( "<span class='ctg-image-size-register-by'>WordPress Core</span>" );
     } else {
-        $slug = wp_kses_post( $slug . "<br /><i class='ctg-image-size-register-by'>Registered by " . wp_get_theme()->get( 'Name' ) );
+        $slug = wp_kses_post( "<span class='ctg-image-size-register-by'>" . wp_get_theme()->get( 'Name' ) ) . "</span>";
     }
 
     return $slug;
