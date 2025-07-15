@@ -41,7 +41,11 @@ jQuery( document ).ready( function( $ ) {
 
     // Remove a custom size
     $( '.ctg-delete-custom-size' ).on( 'click', function() { 
-        alert('dfdfdffsd');
+        $thumbnail_slug = $(this).parent().parent().find( 'td.ctg-title-cell' ).html();
+        console.log( $thumbnail_slug );
+        if ( ! confirm( 'Removing ' + $thumbnail_slug + 'won\'t physically remove any files from the disk. However, this thumbnail will no longer be generated. Are you sure to proceed?' ) ) {
+            return false;
+        }
         let slug = $(this).data('slug');
         $.post( CTGVARS.ajax_url, {
             action: 'ctg_remove_custom_size',
