@@ -55,6 +55,12 @@
                     <div id="ctg-form-response"><!-- AJAX response appears here --></div>
                 </form>
             </fieldset>
+            <div>
+                <p>Some of your previous attachments may be missing <br />Custom Thumbnail Generator thumbnail sizes.</p>
+            </div>
+            <div>
+                <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
+            </div>
         </td>
         <td class="ctg-thumbs-cell">
             <h2>Custom Thumbnails</h2>
@@ -85,7 +91,6 @@
                     </tr>
                 </tbody>
             </table>
-            <hr />
         </td>
     </tr>
 </table>

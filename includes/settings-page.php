@@ -27,11 +27,7 @@
         <?php
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo ctg_render_settings_page_form();
-        ctg_render_thumbnail_list_table();
-        ?>
-
-        <hr />
-        <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
+        ctg_render_thumbnail_list_table(); ?>
     </div>
 
     <?php ctg_enqueue_and_localize_scripts();
