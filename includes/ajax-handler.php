@@ -5,7 +5,10 @@
 
  add_action( 'wp_ajax_ctg_add_custom_size', 'ctg_ajax_add_custom_size' );
  add_action( 'wp_ajax_ctg_remove_custom_size', 'ctg_remove_custom_size' );
- add_action( 'wp_ajax_ctg_regenerate_thumbnails', 'ctg_regenerate_thumbnails' );
+
+ add_action( 'wp_ajax_ctg_get_attachments', 'ctg_get_all_attachments' );
+ add_action( 'wp_ajax_ctg_regenerate_single', 'ctg_regenerate_single_attachment_thumbnail' );
+//  add_action( 'wp_ajax_ctg_regenerate_thumbnails', 'ctg_regenerate_thumbnails' );
 
  function ctg_ajax_add_custom_size() {
     check_ajax_referer( 'ctg_form_action', 'ctg_form_nonce' );
@@ -55,4 +58,40 @@
     }
 
     wp_send_json_success();
+ }
+
+ function ctg_get_all_attachments() {
+    check_ajax_referer( 'ctg_generator_nonce', 'security' );
+
+    $query_args = array(
+        'post_type'      => 'attachment',
+        'post_status'    => 'inherit',
+        'posts_per_page' => -1,
+        'orderby'        => 'DATE',
+        'order'          => 'ASC',
+        'fields'         => 'ids',
+    );
+
+    $query = new WP_Query( $query_args );
+
+    wp_send_json_success( array( 'ids' => $query->posts ) );
+ }
+
+ function ctg_regenerate_single_attachment_thumbnail() {
+    check_ajax_referer( 'ctg_generator_nonce', 'security' );
+
+    $id = (int)$_POST['attachment_id'];
+    if( ! $id ) {
+        wp_send_json_error( array( 'message' => 'Invalid ID' ) );
+    }
+
+    require_once ABSPATH . 'wp-admin/includes/image.php';
+    $metadata = wp_generate_attachment_metadata( $id, get_attached_file( $id ) );
+
+    if( $metadata ) {
+        wp_update_attachment_metadata( $id, $metadata );
+        wp_send_json_success( array( 'message' => 'Success' ) );
+    } else {
+        wp_send_json_error( array( 'message' => 'Failed' ) );
+    }
  }

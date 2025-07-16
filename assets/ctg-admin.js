@@ -55,16 +55,4 @@ jQuery( document ).ready( function( $ ) {
             location.reload();
         } );
     } );
-
-    // Regenerate thumbnails
-    $( '#ctg-regenerate' ).on( 'click', function( e ) {
-        if( confirm( 'Are you sure you want to regenerate all thumbnails?' ) ) {
-            $.post( CTGVARS.ajax_url, {
-                action: 'ctg_regenerate_thumbnails',
-                nonce: CTGVARS.nonce
-            }, function( response ) {
-                alert( response.data );
-            } );
-        }
-    } );
 } );

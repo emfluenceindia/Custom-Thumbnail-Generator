@@ -52,3 +52,21 @@
   function ctg_uninstall_plugin() {
     delete_option( 'ctg_custom_image_sizes' );
   }
+
+  /**
+   * Equeue scripts and Localize for AJAX handling
+   */
+  add_action( 'admin_enqueue_scripts', 'ctg_enqueue_scripts' );
+  
+  function ctg_enqueue_scripts() {
+    wp_enqueue_script( 
+      'ctg-generator-scirpt', 
+      plugin_dir_url( __DIR__ ) . 'assets/ctg-thumbnail-generate.js', 
+      array( 'jquery' ), '1.0' 
+    );
+
+    wp_localize_script( 'ctg-generator-scirpt', 'CTGenerator', array(
+      'ajax_url' => admin_url( 'admin-ajax.php' ),
+      'nonce'    => wp_create_nonce( 'ctg_generator_nonce' )
+    ) );
+  }

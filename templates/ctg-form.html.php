@@ -56,10 +56,15 @@
                 </form>
             </fieldset>
             <div>
-                <p>Some of your previous attachments may be missing <br />Custom Thumbnail Generator thumbnails.</p>
+                
             </div>
-            <div>
+            <div id="ctg-generator-ui">
+                <p>Some of your previous attachments may be missing Custom Thumbnail Generator thumbnails.</p>
                 <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
+                <div id="ctg-progressbar">
+                    <div id="ctg-progress"></div>
+                </div>
+                <div id="ctg-generator-status"><!-- Display AJAX respose here --></div>
             </div>
         </td>
         <td class="ctg-thumbs-cell">

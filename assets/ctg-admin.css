@@ -42,7 +42,7 @@
 }
 
 .ctg-custom-size-list thead th {
-    background-color: #047216 !important;
+    background-color: #4caf50 !important;
 }
 
 .ctg-custom-size-list thead th.ctg-title-cell {
@@ -103,4 +103,43 @@
 
 .ctg-form-table .ctg-thumbs-cell {
     width: 67%;
+}
+
+/** Regenerate area */
+
+#ctg-generator-ui {
+    border: 1px solid #cacaca;
+    padding: 6px;
+    box-sizing: border-box;
+    width: 95%;
+    background-color: #ffffff;
+}
+
+#ctg-generator-ui p {
+    margin: 0 auto;
+}
+
+#ctg-generator-ui button {
+    margin: 8px 0;
+}
+
+#ctg-progressbar {
+    margin: 10px 0;
+    width:100%;
+    background: #eeeeee;
+}
+
+#ctg-progress {
+    width: 0px;
+    background: #4caf50;
+    box-sizing: border-box;
+    height: 30px;
+}
+
+#ctg-generator-status {
+    width: 100%;
+}
+
+.silverstorm-admin-big-notice--container {
+    display: none;
 }
