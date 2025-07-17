@@ -28,18 +28,18 @@
     $image_sizes = get_intermediate_image_sizes();
     $ctg_sizes = get_option( 'ctg_custom_image_sizes', array() );
 
-    $slug_to_remove = 'ctg_75x75';
+    // $slug_to_remove = 'ctg_75x75';
 
-    foreach( $ctg_sizes as $slug => $size_info ) {
-        if( $slug !== $slug_to_remove ) continue;
+    // foreach( $ctg_sizes as $slug => $size_info ) {
+    //     if( $slug !== $slug_to_remove ) continue;
 
-        if( isset( $ctg_sizes[ $slug_to_remove ] ) ) {
-            unset( $ctg_sizes[ $slug_to_remove ] ); // remove the image size
-            update_option( 'ctg_custom_image_sizes', $ctg_sizes );
-        }
-    }
+    //     if( isset( $ctg_sizes[ $slug_to_remove ] ) ) {
+    //         unset( $ctg_sizes[ $slug_to_remove ] ); // remove the image size
+    //         update_option( 'ctg_custom_image_sizes', $ctg_sizes );
+    //     }
+    // }
 
-    print_r( $ctg_sizes );
+    // print_r( $ctg_sizes );
     /** Debug */
     ?>
 

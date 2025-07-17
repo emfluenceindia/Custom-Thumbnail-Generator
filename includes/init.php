@@ -59,6 +59,8 @@
   add_action( 'admin_enqueue_scripts', 'ctg_enqueue_scripts' );
   
   function ctg_enqueue_scripts() {
+
+    /** Generator scripts */
     wp_enqueue_script( 
       'ctg-generator-scirpt', 
       plugin_dir_url( __DIR__ ) . 'assets/ctg-thumbnail-generate.js', 
@@ -69,4 +71,17 @@
       'ajax_url' => admin_url( 'admin-ajax.php' ),
       'nonce'    => wp_create_nonce( 'ctg_generator_nonce' )
     ) );
+
+    /** Remove scripts */
+    wp_enqueue_script(
+      'ctg-removal-script',
+      plugin_dir_url( __DIR__ ) . 'assets/ctg-thumbnail-remove.js',
+      array( 'jquery' ), '1.0'
+    );
+
+    wp_localize_script( 'ctg-removal-script', 'CTGRemove', array(
+      'ajax_url' => admin_url( 'admin-ajax.php' ),
+      'nonce'    => wp_create_nonce( 'ctg_removal_nonce' )
+    ) );
+
   }

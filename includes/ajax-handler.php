@@ -4,7 +4,7 @@
  */
 
  add_action( 'wp_ajax_ctg_add_custom_size', 'ctg_ajax_add_custom_size' );
- add_action( 'wp_ajax_ctg_remove_custom_size', 'ctg_remove_custom_size' );
+ add_action( 'wp_ajax_ctg_remove_custom_size', 'ctg_ajax_remove_custom_size' );
 
  add_action( 'wp_ajax_ctg_get_attachments', 'ctg_get_all_attachments' );
  add_action( 'wp_ajax_ctg_regenerate_single', 'ctg_regenerate_single_attachment_thumbnail' );
@@ -41,33 +41,6 @@
     wp_send_json_success( $str_message );
  }
 
- function ctg_remove_custom_size() {
-    check_ajax_referer( 'ctg_nonce' );
-    
-    if( ! isset( $_POST['slug'] ) || empty( $_POST['slug'] ) ) {
-        wp_send_json_error( 
-            array(
-                'status'  => 'failed', 
-                'message' => 'There has been a critical error! Plase trye again later.'
-            ) 
-        );
-    }
-
-    $slug = sanitize_text_field( wp_unslash( $_POST['slug'] ) );
-
-    $sizes = get_option( 'ctg_custom_image_sizes', array() );
-
-    if( isset( $sizes[ $slug ] ) ) {
-        unset( $sizes[ $slug ] );
-        update_option( 'ctg_custom_image_sizes', $sizes );
-    }
-
-    wp_send_json_success( array(
-        'status'  => 'success',
-        'message' => $slug . ' thumnail removed',
-    ) );
- }
-
  function ctg_get_all_attachments() {
     check_ajax_referer( 'ctg_generator_nonce', 'security' );
 
@@ -102,4 +75,44 @@
     } else {
         wp_send_json_error( array( 'message' => 'Failed' ) );
     }
+ }
+
+ function ctg_ajax_remove_custom_size() {
+    check_ajax_referer( 'ctg_removal_nonce', 'security' );
+
+    if( ! isset( $_POST['slug'] ) || empty( $_POST['slug'] ) ) {
+        wp_send_json_error( 
+            array(
+                'status'  => 'failed', 
+                'message' => 'There has been a critical error! Plase trye again later.'
+            ) 
+        );
+    }
+
+    $slug = sanitize_text_field( wp_unslash( $_POST['slug'] ) );
+
+    wp_send_json_success(
+        array(
+            'success'    => true,
+            'size_slug'  => $slug,
+            'message'    => 'Thumbnail ' . $slug . ' removed',
+        )
+    );
+
+    return;
+
+    $sizes = get_option( 'ctg_custom_image_sizes', array() );
+
+    if( isset( $sizes[ $slug ] ) ) {
+        unset( $sizes[ $slug ] );
+        update_option( 'ctg_custom_image_sizes', $sizes );
+    }
+
+    wp_send_json_success(
+        array(
+            'success'    => true,
+            'size_slug'  => $slug,
+            'message'    => 'Thumbnail ' . $slug . ' removed',
+        )
+    );
  }
