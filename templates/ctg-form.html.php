@@ -20,13 +20,13 @@
                         <tr>
                             <th>Width&nbsp;</th>
                             <td>
-                                <input type="number" name="ctg-width" id="ctg-width" required /> px
+                                <input type="number" min="25" name="ctg-width" id="ctg-width" required /> px
                             </td>
                         </tr>
                         <tr>
                             <th>Height&nbsp;</th>
                             <td>
-                                <input type="number" name="ctg-height" id="ctg-height" required /> px
+                                <input type="number" min="25" name="ctg-height" id="ctg-height" required /> px
                             </td>
                         </tr>
                         <tr>
