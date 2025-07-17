@@ -45,7 +45,12 @@
     check_ajax_referer( 'ctg_nonce' );
     
     if( ! isset( $_POST['slug'] ) || empty( $_POST['slug'] ) ) {
-        wp_send_json_error( 'There has been a critical error! Plase trye again later.' );
+        wp_send_json_error( 
+            array(
+                'status'  => 'failed', 
+                'message' => 'There has been a critical error! Plase trye again later.'
+            ) 
+        );
     }
 
     $slug = sanitize_text_field( wp_unslash( $_POST['slug'] ) );
@@ -57,7 +62,10 @@
         update_option( 'ctg_custom_image_sizes', $sizes );
     }
 
-    wp_send_json_success();
+    wp_send_json_success( array(
+        'status'  => 'success',
+        'message' => $slug . ' thumnail removed',
+    ) );
  }
 
  function ctg_get_all_attachments() {

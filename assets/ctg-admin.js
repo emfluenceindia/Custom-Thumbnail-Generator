@@ -41,18 +41,30 @@ jQuery( document ).ready( function( $ ) {
 
     // Remove a custom size
     $( '.ctg-delete-custom-size' ).on( 'click', function() { 
+        const row = $(this).parent().parent();
+
         $thumbnail_slug = $(this).parent().parent().find( 'td.ctg-title-cell' ).html();
-        console.log( $thumbnail_slug );
-        if ( ! confirm( 'Removing ' + $thumbnail_slug + 'won\'t physically remove any files from the disk. However, this thumbnail will no longer be generated. Are you sure to proceed?' ) ) {
+        if ( ! confirm( 'Removing ' + $thumbnail_slug + 'won\'t remove any physical files from the disk. However, it will no longer be generated in the future. Are you sure to proceed?' ) ) {
             return false;
         }
         let slug = $(this).data('slug');
+
+        $( this ).html( 'Working...' );
+        $(row).find('td').each(function() {
+            $( this ).css( 'color', '#aeaeae' );
+        });
+
         $.post( CTGVARS.ajax_url, {
             action: 'ctg_remove_custom_size',
             nonce: CTGVARS.nonce,
             slug
-        }, function() {
-            location.reload();
+        }, function( response ) {
+            if( response.sattus === 'successs' ) {
+                console.log( response.message );
+                $( row ).slideUp( 1200 );
+            } else {
+                console.log( response.message );
+            }
         } );
     } );
 } );
