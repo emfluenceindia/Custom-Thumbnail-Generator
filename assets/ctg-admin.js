@@ -39,3 +39,7 @@ jQuery( document ).ready( function( $ ) {
         } );
     } );
 } );
+
+function loadCustomThumbnailTable() {
+        
+}

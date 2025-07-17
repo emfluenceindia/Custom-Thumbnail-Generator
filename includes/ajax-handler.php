@@ -91,16 +91,6 @@
 
     $slug = sanitize_text_field( wp_unslash( $_POST['slug'] ) );
 
-    wp_send_json_success(
-        array(
-            'success'    => true,
-            'size_slug'  => $slug,
-            'message'    => 'Thumbnail ' . $slug . ' removed',
-        )
-    );
-
-    return;
-
     $sizes = get_option( 'ctg_custom_image_sizes', array() );
 
     if( isset( $sizes[ $slug ] ) ) {
