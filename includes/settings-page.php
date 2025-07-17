@@ -28,19 +28,18 @@
     $image_sizes = get_intermediate_image_sizes();
     $ctg_sizes = get_option( 'ctg_custom_image_sizes', array() );
 
-    $args = array(
-        'post_type' => 'attachment',
-        'posts_per_page' => -1,
-        'post_status' => 'inherit',
-        'post_mime_type' => 'image',
-        'order' => 'ASC'
-    );
+    $slug_to_remove = 'ctg_75x75';
 
-    $attachments = get_posts( $args );
-    foreach( $attachments as $attachment ) {
-        $image = wp_get_attachment_image( $attachment->ID );
-        // print_r( $image );
+    foreach( $ctg_sizes as $slug => $size_info ) {
+        if( $slug !== $slug_to_remove ) continue;
+
+        if( isset( $ctg_sizes[ $slug_to_remove ] ) ) {
+            unset( $ctg_sizes[ $slug_to_remove ] ); // remove the image size
+            update_option( 'ctg_custom_image_sizes', $ctg_sizes );
+        }
     }
+
+    print_r( $ctg_sizes );
     /** Debug */
     ?>
 
