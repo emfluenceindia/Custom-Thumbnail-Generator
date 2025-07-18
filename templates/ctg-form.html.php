@@ -63,8 +63,9 @@
                 <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
                 <div id="ctg-progressbar">
                     <div id="ctg-progress"></div>
+                    <div id="ctg-percentage-increment"></div>
                 </div>
-                <div id="ctg-generator-status"><!-- Display AJAX respose here --></div>
+                <div id="ctg-generator-status"><!-- AJAX response --></div>
             </div>
         </td>
         <td class="ctg-thumbs-cell">

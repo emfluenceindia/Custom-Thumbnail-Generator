@@ -20,12 +20,16 @@ jQuery( document ).ready( function($) {
                         count++;
                         let percent = Math.round( (count / total) * 100 );
                         $( '#ctg-progress' ).css( 'width', percent + '%' );
+                        if( percent >= 50 ) {
+                            $( '#ctg-percentage-increment' ).css( 'color', '#ffffff' );
+                        }
+                        $( '#ctg-percentage-increment' ).html( percent + '%' );
                         $( '#ctg-generator-status' ).text( `Processed ${count} of ${total}` );
 
                         if( count < total ) {
                             processNext();
                         } else {
-                            $( '#ctg-generator-status' ).text( 'All thumbnails regerated' );
+                            $( '#ctg-generator-status' ).text( 'Thumbnails generated.' );
                         }
                     });
                 }

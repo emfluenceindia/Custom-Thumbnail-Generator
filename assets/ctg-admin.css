@@ -108,11 +108,9 @@
 /** Regenerate area */
 
 #ctg-generator-ui {
-    border: 1px solid #cacaca;
     padding: 6px;
     box-sizing: border-box;
     width: 95%;
-    background-color: #ffffff;
 }
 
 #ctg-generator-ui p {
@@ -127,17 +125,29 @@
     margin: 10px 0;
     width:100%;
     background: #eeeeee;
+    position: relative;
 }
 
 #ctg-progress {
-    width: 0px;
+    width: 0%;
     background: #4caf50;
     box-sizing: border-box;
     height: 30px;
+    transition: width 0.3s;
 }
 
 #ctg-generator-status {
     width: 100%;
+}
+
+#ctg-percentage-increment {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    z-index: 1000;
+    top: 20%;
+    font-weight: 500;
 }
 
 .silverstorm-admin-big-notice--container {
