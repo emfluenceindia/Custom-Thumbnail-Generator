@@ -75,9 +75,9 @@
  /**
   * Make custom image sizes available in post
   */
-  add_filter( 'image_size_names_choose', 'ctg_add_to_media_dropdown' );
+  add_filter( 'image_size_names_choose', 'ctg_add_custom_sizes_to_media_dropdown' );
 
-  function ctg_add_to_media_dropdown( $sizes ) {
+  function ctg_add_custom_sizes_to_media_dropdown( $sizes ) {
     $custom_sizes = get_option( 'ctg_custom_image_sizes', array() );
     foreach( $custom_sizes as $slug => $args ) {
         $sizes[ $slug ] = $slug;
