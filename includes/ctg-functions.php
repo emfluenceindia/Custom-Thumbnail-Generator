@@ -1,31 +1,4 @@
 <?php
-/**
- * Enqueue scripts and CSS
- */
- function ctg_enqueue_and_localize_scripts() {
-    /**
-     * Enqueue scripts and style
-     */
-    wp_enqueue_script( 
-        'ctg-admin-js', 
-        CTG_PLUGIN_DIR . '/assets/ctg-admin.js', 
-        [ 'jquery' ], '1.0', true
-    );
-
-    wp_localize_script(
-        'ctg-admin-js', 'CTGVARS', array(
-            'ajax_url' => admin_url( 'admin-ajax.php' ),
-        )
-    );
-
-    wp_enqueue_style(
-        'ctg-admin.css',
-        CTG_PLUGIN_DIR . '/assets/ctg-admin.css',
-        null,
-        '1.0'
-    );
- }
-
  /**
   * Render registered thumbnail sizes table
   */
@@ -98,7 +71,7 @@
  }
 
 /**
- * Prints thumbnail size registrar's name under slug
+ * Display thumbnail source
  */
  function ctg_get_size_table_title( $slug ) {
     if( in_array( $slug, WP_NATIVE_THUMB_SIZES ) ) {
@@ -123,14 +96,6 @@
 
     ob_start();
     include( $html_template );
-    // $form_content = file_get_contents( $html_template );
     $form_content = ob_get_clean();
     return $form_content;
-  }
-
-  /**
-   * Render list of custom thumbnails registered by Custom Thumbnail Generator plugin
-   */
-  function ctg_render_plugin_generated_thmbnail_list() {
-    
   }

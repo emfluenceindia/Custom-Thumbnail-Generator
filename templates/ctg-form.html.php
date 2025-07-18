@@ -39,14 +39,14 @@
                         <tr>
                             <td>&nbsp;</td>
                             <td>
-                                <input type="submit" value="Add New Thumbnail" class="button button-primary" id="ctg-addsise" name="ctg-addsize" />
+                                <input type="submit" value="Add Thumbnail Size" class="button button-primary" id="ctg-addsise" name="ctg-addsize" />
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <?php
                                 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                echo wp_nonce_field( 'ctg_form_action', 'ctg_form_nonce' );
+                                // echo wp_nonce_field( 'ctg_form_action', 'ctg_form_nonce' );
                                 ?>
                             </td>
                         </tr>
@@ -59,6 +59,7 @@
                 
             </div>
             <div id="ctg-generator-ui">
+                <hr />
                 <p>Some of your previous attachments may be missing Custom Thumbnail Generator thumbnails.</p>
                 <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
                 <div id="ctg-progressbar">

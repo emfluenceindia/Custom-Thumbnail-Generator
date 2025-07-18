@@ -11,8 +11,9 @@ jQuery( document ).ready( function( $ ) {
         const ctgHeight         = $( '#ctg-height' )
         const ctgCrop           = $( '#ctg-crop' )
         
-        $.post( CTGVARS.ajax_url, {
+        $.post( CTGMediaAction.ajax_url, /* CTGVARS.ajax_url */ {
             action: 'ctg_add_custom_size',
+            security: CTGMediaAction.nonce,
             ...Object.fromEntries( new URLSearchParams( formData ) )
         }, function( response ) {
             if( response.success ) { 

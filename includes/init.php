@@ -23,35 +23,10 @@
   'button'   => [ 'type' => [], 'class' => [], 'name' => [], 'value' => [] ]
  ) );
 
- register_activation_hook( __FILE__, 'ctg_activate_plugin' );
- register_deactivation_hook( __FILE__, 'ctg_deactivate_plugin' );
- register_uninstall_hook( __FILE__, 'ctg_uninstall_plugin' );
-
  require_once CTG_PLUGIN_PATH . 'settings-page.php';
  require_once CTG_PLUGIN_PATH . 'thumbnail-manager.php';
  require_once CTG_PLUGIN_PATH . 'ajax-handler.php';
  require_once CTG_PLUGIN_PATH . 'ctg-functions.php';
-
- /**
-  * Plugin activation
-  */
-  function ctg_activate_plugin() {
-
-  }
-
-  /**
-   * Plugin deactivation
-   */
-  function ctg_deactivate_plugin() {
-    
-  }
-
-  /**
-   * Plugin uninstallation
-   */
-  function ctg_uninstall_plugin() {
-    // delete_option( 'ctg_custom_image_sizes' );
-  }
 
   /**
    * Equeue scripts and Localize for AJAX handling
@@ -75,4 +50,12 @@
       'ajax_url' => admin_url( 'admin-ajax.php' ),
       'nonce'    => wp_create_nonce( 'ctg_media_actions' )
     ) );
+
+    /** Enqueue admin settings page CSS */
+    wp_enqueue_style(
+        'ctg-admin.css',
+        plugin_dir_url( __DIR__ ) .  'assets/ctg-admin.css',
+        null,
+        '1.0'
+    );
   }

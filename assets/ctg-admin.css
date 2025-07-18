@@ -61,8 +61,8 @@
 
 .ctg-form-container {
     width: 100%;
-    /* border-right: 1px solid lightgray !important;  */
     box-sizing: border-box;
+    padding-right: 5px;
 }
 
 .ctg-form-container legend h3 {

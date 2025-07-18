@@ -11,7 +11,8 @@
 //  add_action( 'wp_ajax_ctg_regenerate_thumbnails', 'ctg_regenerate_thumbnails' );
 
  function ctg_ajax_add_custom_size() {
-    check_ajax_referer( 'ctg_form_action', 'ctg_form_nonce' );
+    // check_ajax_referer( 'ctg_form_action', 'ctg_form_nonce' );
+    check_ajax_referer( 'ctg_media_actions', 'security' );
 
     $fld_validation_message = __( 'Not all field values are supplied!', 'custom-thumbnail-generator' );
 
