@@ -8,10 +8,11 @@
 
  add_action( 'wp_ajax_ctg_get_attachments', 'ctg_get_all_attachments' );
  add_action( 'wp_ajax_ctg_regenerate_single', 'ctg_regenerate_single_attachment_thumbnail' );
-//  add_action( 'wp_ajax_ctg_regenerate_thumbnails', 'ctg_regenerate_thumbnails' );
 
+ /**
+  * Add new thumbnail size
+  */
  function ctg_ajax_add_custom_size() {
-    // check_ajax_referer( 'ctg_form_action', 'ctg_form_nonce' );
     check_ajax_referer( 'ctg_media_actions', 'security' );
 
     $fld_validation_message = __( 'Not all field values are supplied!', 'custom-thumbnail-generator' );
@@ -42,8 +43,10 @@
     wp_send_json_success( $str_message );
  }
 
+ /**
+  * Get all attachments
+  */
  function ctg_get_all_attachments() {
-    // check_ajax_referer( 'ctg_generator_nonce', 'security' );
     check_ajax_referer( 'ctg_media_actions', 'security' );
 
     $query_args = array(
@@ -60,8 +63,10 @@
     wp_send_json_success( array( 'ids' => $query->posts ) );
  }
 
+ /**
+  * Generate single attachment thumbnail
+  */
  function ctg_regenerate_single_attachment_thumbnail() {
-    // check_ajax_referer( 'ctg_generator_nonce', 'security' );
     check_ajax_referer( 'ctg_media_actions', 'security' );
 
     $id = (int)$_POST['attachment_id'];
@@ -80,8 +85,10 @@
     }
  }
 
+ /**
+  * Remove a custom size without affecting any physical file
+  */
  function ctg_ajax_remove_custom_size() {
-    // check_ajax_referer( 'ctg_removal_nonce', 'security' );
     check_ajax_referer( 'ctg_media_actions', 'security' );
 
     if( ! isset( $_POST['slug'] ) || empty( $_POST['slug'] ) ) {
