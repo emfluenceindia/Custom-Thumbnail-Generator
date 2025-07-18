@@ -42,7 +42,8 @@
  }
 
  function ctg_get_all_attachments() {
-    check_ajax_referer( 'ctg_generator_nonce', 'security' );
+    // check_ajax_referer( 'ctg_generator_nonce', 'security' );
+    check_ajax_referer( 'ctg_media_actions', 'security' );
 
     $query_args = array(
         'post_type'      => 'attachment',
@@ -59,7 +60,8 @@
  }
 
  function ctg_regenerate_single_attachment_thumbnail() {
-    check_ajax_referer( 'ctg_generator_nonce', 'security' );
+    // check_ajax_referer( 'ctg_generator_nonce', 'security' );
+    check_ajax_referer( 'ctg_media_actions', 'security' );
 
     $id = (int)$_POST['attachment_id'];
     if( ! $id ) {
@@ -78,7 +80,8 @@
  }
 
  function ctg_ajax_remove_custom_size() {
-    check_ajax_referer( 'ctg_removal_nonce', 'security' );
+    // check_ajax_referer( 'ctg_removal_nonce', 'security' );
+    check_ajax_referer( 'ctg_media_actions', 'security' );
 
     if( ! isset( $_POST['slug'] ) || empty( $_POST['slug'] ) ) {
         wp_send_json_error( 

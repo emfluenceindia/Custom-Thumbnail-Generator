@@ -43,14 +43,14 @@
    * Plugin deactivation
    */
   function ctg_deactivate_plugin() {
-
+    
   }
 
   /**
    * Plugin uninstallation
    */
   function ctg_uninstall_plugin() {
-    delete_option( 'ctg_custom_image_sizes' );
+    // delete_option( 'ctg_custom_image_sizes' );
   }
 
   /**
@@ -59,29 +59,20 @@
   add_action( 'admin_enqueue_scripts', 'ctg_enqueue_scripts' );
   
   function ctg_enqueue_scripts() {
-
-    /** Generator scripts */
-    wp_enqueue_script( 
-      'ctg-generator-scirpt', 
-      plugin_dir_url( __DIR__ ) . 'assets/ctg-thumbnail-generate.js', 
-      array( 'jquery' ), '1.0' 
-    );
-
-    wp_localize_script( 'ctg-generator-scirpt', 'CTGenerator', array(
-      'ajax_url' => admin_url( 'admin-ajax.php' ),
-      'nonce'    => wp_create_nonce( 'ctg_generator_nonce' )
-    ) );
-
-    /** Remove scripts */
+    /**
+     * Enqueue media action scripts
+     */
     wp_enqueue_script(
-      'ctg-removal-script',
-      plugin_dir_url( __DIR__ ) . 'assets/ctg-thumbnail-remove.js',
+      'ctg-media-actions-script',
+      plugin_dir_url( __DIR__ ) . 'assets/ctg-media-actions.js',
       array( 'jquery' ), '1.0'
     );
 
-    wp_localize_script( 'ctg-removal-script', 'CTGRemove', array(
+    /**
+     * Localize media action script
+     */
+    wp_localize_script( 'ctg-media-actions-script', 'CTGMediaAction', array(
       'ajax_url' => admin_url( 'admin-ajax.php' ),
-      'nonce'    => wp_create_nonce( 'ctg_removal_nonce' )
+      'nonce'    => wp_create_nonce( 'ctg_media_actions' )
     ) );
-
   }
