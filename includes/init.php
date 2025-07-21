@@ -24,8 +24,11 @@
  ) );
 
  require_once CTG_PLUGIN_PATH . 'settings-page.php';
- require_once CTG_PLUGIN_PATH . 'ajax-handler.php';
- require_once CTG_PLUGIN_PATH . 'ctg-functions.php';
+ require_once CTG_PLUGIN_PATH . 'class-ctg-functions.php';
+ 
+ require_once CTG_PLUGIN_PATH . 'class-ajax-handlers.php';
+ new CTG_Ajax_Handlers();
+
 
  /**
   * Equeue scripts and Localize for AJAX handling

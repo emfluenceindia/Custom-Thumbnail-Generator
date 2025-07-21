@@ -19,14 +19,13 @@
   * HTML to render on Settings page
   */
  function ctg_render_settngs_page() {
-    $default_sizes = ctg_default_and_theme_based_image_sizes();
-    $sizes         = get_option( 'ctg_custom_image_sizes', array() ); ?>
+    $ctg_functions = new CTG_Functions(); ?>
     
     <div class="wrap">
         <?php
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo ctg_render_settings_page_form();
-        ctg_render_thumbnail_list_table();
+        echo $ctg_functions->ctg_render_settings_page_form();
+        $ctg_functions->ctg_render_thumbnail_list_table();
         ?>
     </div>
 

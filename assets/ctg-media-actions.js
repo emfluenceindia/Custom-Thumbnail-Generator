@@ -21,7 +21,7 @@ jQuery( document ).ready( function( $ ) {
                 $( ctgHeight ).val("");
                 $( ctgCrop ).prop("checked", false);
 
-                $( responseContainer ).html( '<p style="color: green">New thumbnail size added.</p>' )
+                $( responseContainer ).html( '<p style="color: green">New thumbnail size added.</p>' );
 
                 /**
                  * Call the table loading method via AJAX to reload
@@ -31,9 +31,10 @@ jQuery( document ).ready( function( $ ) {
                 location.reload();
             }
             else {
-                $( responseContainer ).html( '<p style="color: green">Error adding new thumbnail size.</p>' )
+                $( responseContainer ).html( '<p style="color: red">Thumbnail size exists!</p>' );
             }
-        } ).fail( function() {
+        } ).fail( function( response ) {
+            console.log( response );
             $( responseContainer ).html( 'Unknown error! Request failed.' );
         } );
     } );
