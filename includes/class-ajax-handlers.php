@@ -65,6 +65,10 @@ class CTG_Ajax_Handlers {
     function ctg_regenerate_single_attachment_thumbnail() {
         check_ajax_referer( 'ctg_media_actions', 'security' );
 
+        if( ! isset( $_POST['attachment_id'] ) || empty( $_POST['attachment_id'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid argument' ) );
+        }
+
         $id = (int)$_POST['attachment_id'];
         if( ! $id ) {
             wp_send_json_error( array( 'message' => 'Invalid ID' ) );
