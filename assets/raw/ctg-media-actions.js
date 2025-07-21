@@ -100,13 +100,14 @@ jQuery( document ).ready( function( $ ) {
                         $( '#ctg-generator-status' ).text( `Processed ${count} of ${total}` );
 
                         if( count < total ) {
+                            // Call recursively
                             processNext();
                         } else {
                             $( '#ctg-generator-status' ).text( 'Thumbnails generated.' );
                         }
                     });
                 }
-
+                // Call recusively
                 processNext();
             }
         } );
