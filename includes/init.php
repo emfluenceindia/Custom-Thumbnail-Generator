@@ -38,7 +38,7 @@
      */
     wp_enqueue_script(
       'ctg-media-actions-script',
-      plugin_dir_url( __DIR__ ) . 'assets/ctg-media-actions.js',
+      plugin_dir_url( __DIR__ ) . 'assets/js/ctg-media-actions.min.js',
       array( 'jquery' ), '1.0'
     );
 
@@ -53,7 +53,7 @@
     /** Enqueue admin settings page CSS */
     wp_enqueue_style(
         'ctg-admin.css',
-        plugin_dir_url( __DIR__ ) .  'assets/ctg-admin.css',
+        plugin_dir_url( __DIR__ ) .  'assets/css/ctg-admin.min.css',
         null,
         '1.0'
     );
