@@ -1,9 +1,13 @@
-![Plugin Logo](https://ik.imagekit.io/asksubrata/icon-256x256.png)
+![Plugin Logo](https://ik.imagekit.io/asksubrata/icon-128x128.png)
 
 
 # Custom Thumbnail Generator
 
 Custom Thumbnail Generator is a free WordPress plugin designed to let users create and register an unlimited number of thumbnail sizes. These thumbnails can be effortlessly integrated across the project and remain unaffected even when the theme is changed.
+
+## Screenshot
+
+![Custom Thumbnail Generator](https://ik.imagekit.io/asksubrata/screenshot-1.png)
 
 Contributor: [Subrata Sarkar](https://profiles.wordpress.org/subrataemfluence/)  
 Tags: wordpress plugin, media, thumbnail, regenerate, custom image size  
@@ -47,7 +51,3 @@ You are free to use, modify, and distribute this plugin under the terms of the G
 - After activation, go to Settings > Custom Thumbnail Generator to configure thumbnail sizes.
 - Ensure your media library has images to test regeneration.
 - Use the AJAX-powered UI to add, remove, or regenerate thumbnails.
-
-## Screenshots
-
-![Custom Thumbnail Generator](https://ik.imagekit.io/asksubrata/screenshot-1.png)
