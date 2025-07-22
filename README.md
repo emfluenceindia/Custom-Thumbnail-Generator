@@ -1,4 +1,4 @@
-![Plugin Logo](https://drive.google.com/drive/folders/1z-V70f4f4tQXEeaSMuhe84gEjZ-6izQl)
+![Plugin Logo](https://previews.dropbox.com/p/thumb/ACs9r107gluKS86tOzOYdbxZxQmw0OYORUQJVttMeDDND38mk2MEgmsrv2q0yt6iz7InTr15oS7N9gWt2zqV1pFZPUlzPyd1Uen0QwQARVcLHWKnuoxN7qvqeEW40LZQwLCm2x4ST-RXQ_FfkhmcjlQdrKQOwaPnQHkCyW2_j6OkW0Mbv4uTODHVlmxfLJNhMqUcNDyvvDyE7ZlirM4udfB2mdHyG0t5-G-oMPTXrClGdx0heyOGLN7UR0VTdgWMD31WXhrBpD188HcuKE9nI8S4mcflvh2iorujctw09lDKQg/p.png)
 
 
 # Custom Thumbnail Generator
