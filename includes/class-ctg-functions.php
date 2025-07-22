@@ -32,7 +32,7 @@ class CTG_Functions {
     }
 
     /** Render custom thumbnail sizes registered by Custom Thumbnail Generator */
-    public function ctg_render_thumbnail_list_table() {
+    public function ctg_render_default_thumbnail_list_table() {
         $default_sizes = $this->ctg_default_and_theme_based_image_sizes(); ?>
         <h2>Default Thumbnails</h2>
 

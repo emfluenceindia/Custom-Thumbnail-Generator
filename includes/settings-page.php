@@ -25,7 +25,7 @@
         <?php
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $ctg_functions->ctg_render_settings_page_form();
-        $ctg_functions->ctg_render_thumbnail_list_table();
+        $ctg_functions->ctg_render_default_thumbnail_list_table();
         ?>
     </div>
 

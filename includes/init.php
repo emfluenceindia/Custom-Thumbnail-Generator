@@ -10,6 +10,8 @@
 
  define( 'WP_NATIVE_THUMB_SIZES', [ 'thumbnail', 'medium', 'medium_large', 'large' ] );
 
+ define( 'CTG_LOGO', plugin_dir_url( __DIR__ ) . 'assets/images/icon-64x64.png' );
+
  define( 'ALLOWED_TAGS', array(
   'form'     => [ 'action' => [], 'method' => [], 'id' => [], 'class' => [] ],
   'input'    => [ 'type' => [], 'name' => [], 'value' => [], 'checked' => [], 'id' => [], 'class' => [] ],
@@ -42,6 +44,7 @@
     wp_enqueue_script(
       'ctg-media-actions-script',
       plugin_dir_url( __DIR__ ) . 'assets/js/ctg-media-actions.min.js',
+      // plugin_dir_url( __DIR__ ) . 'assets/raw/ctg-media-actions.js',
       array( 'jquery' ), '1.0', true
     );
 
@@ -57,6 +60,7 @@
     wp_enqueue_style(
         'ctg-admin.css',
         plugin_dir_url( __DIR__ ) .  'assets/css/ctg-admin.min.css',
+        // plugin_dir_url( __DIR__ ) .  'assets/raw/ctg-admin.css',
         null,
         '1.0'
     );

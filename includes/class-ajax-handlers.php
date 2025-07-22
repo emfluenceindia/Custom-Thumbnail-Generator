@@ -9,6 +9,8 @@ class CTG_Ajax_Handlers {
 
         add_action( 'wp_ajax_ctg_get_attachments', array( $this, 'ctg_get_all_attachments' ) );
         add_action( 'wp_ajax_ctg_regenerate_single', array( $this, 'ctg_regenerate_single_attachment_thumbnail' ) );
+
+        add_action( 'wp_ajax_ctg_reload_thumb_list', array( $this, 'ctg_ajax_load_thumb_list' ) );
     }
 
     /** Add new thumbnail size */
@@ -41,6 +43,23 @@ class CTG_Ajax_Handlers {
 
         $str_message = "The requested thumbnail size ($width px x $height px) has been generated";
         wp_send_json_success( $str_message );
+    }
+
+    /** Load custom thumbnail list table */
+    function ctg_ajax_load_thumb_list() {
+        check_ajax_referer( 'ctg_media_actions', 'security' );
+
+        $html_template = CTG_TEMPLATE_DIR . 'ctg-custom-thumb-list.html.php';
+        ob_start();
+        include( $html_template );
+        $template = ob_get_clean();
+
+        wp_send_json_success(
+            array(
+                'success'   => true,
+                'data_list' => $template
+            )
+        );
     }
 
     /** Get all attachments */
