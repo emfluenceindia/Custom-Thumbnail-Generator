@@ -11,10 +11,10 @@ Custom Thumbnail Generator is a free WordPress plugin designed to let users crea
 
 Contributor: [Subrata Sarkar](https://profiles.wordpress.org/subrataemfluence/)  
 Tags: wordpress plugin, media, thumbnail, regenerate, custom image size  
-Requires at least: 6.5
-Tested up to: 6.8
+Requires at least: 6.5  
+Tested up to: 6.8  
 Minimum PHP version required: 5.6  
-Recommended PHP version: 7.4
+Recommended PHP version: 7.4  
 Stable tag: 1.0.0  
 License: GPL v2  
 
