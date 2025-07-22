@@ -1,7 +1,9 @@
 # Node modules
 /node_modules/
 
-# Optional: Gulp configuration file(s)
+# Gulp configuration file(s)
 gulpfile.js
-package.json
-package-lock.json
+
+# Raw files
+/assets/raw
+
