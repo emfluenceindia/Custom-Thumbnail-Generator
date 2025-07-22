@@ -50,4 +50,4 @@ You are free to use, modify, and distribute this plugin under the terms of the G
 
 ## Screenshots
 
-![Custom Thumbnail Generator](https://drive.google.com/file/d/10seGCpwg3aUAdN5e_x8SS1QbrJ-znEbw/view?usp=sharing)
+![Custom Thumbnail Generator](https://ik.imagekit.io/asksubrata/screenshot-1.png)
