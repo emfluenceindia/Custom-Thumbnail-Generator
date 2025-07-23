@@ -44,7 +44,6 @@
     wp_enqueue_script(
       'ctg-media-actions-script',
       plugin_dir_url( __DIR__ ) . 'assets/js/ctg-media-actions.min.js',
-      // plugin_dir_url( __DIR__ ) . 'assets/raw/ctg-media-actions.js',
       array( 'jquery' ), '1.0', true
     );
 
@@ -60,7 +59,6 @@
     wp_enqueue_style(
         'ctg-admin.css',
         plugin_dir_url( __DIR__ ) .  'assets/css/ctg-admin.min.css',
-        // plugin_dir_url( __DIR__ ) .  'assets/raw/ctg-admin.css',
         null,
         '1.0'
     );
