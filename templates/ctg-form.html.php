@@ -1,5 +1,5 @@
 <h1 class="ctg-plugin-header">
-    <img src="<?php echo esc_attr( CTG_LOGO ) ?>" alt="Custom Thumbnail Generator" />
+    <img src="<?php /* phpcs:disable PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */ echo esc_attr( CTG_LOGO ) ?>" alt="Custom Thumbnail Generator" />
     <span>Custom Thumbnail Generator</span>
 </h1>
 <hr />
