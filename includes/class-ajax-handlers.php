@@ -17,6 +17,10 @@ class CTG_Ajax_Handlers {
     function ctg_ajax_add_custom_size() {
         check_ajax_referer( 'ctg_media_actions', 'security' );
 
+        if( ! current_user_can( 'manage_options' ) ) {
+            wp_die( 'You are not authorized to perform this action!' );
+        }
+
         $fld_validation_message = __( 'Not all field values are supplied!', 'custom-thumbnail-generator' );
 
         if( ! isset( $_POST[ 'ctg-width' ] ) || ! isset( $_POST[ 'ctg-height' ] ) ) {
@@ -49,6 +53,10 @@ class CTG_Ajax_Handlers {
     function ctg_ajax_load_thumb_list() {
         check_ajax_referer( 'ctg_media_actions', 'security' );
 
+        if( ! current_user_can( 'manage_options' ) ) {
+            wp_die( 'You are not authorized to perform this action!' );
+        }
+
         $html_template = CTG_TEMPLATE_DIR . 'ctg-custom-thumb-list.html.php';
         ob_start();
         include( $html_template );
@@ -65,6 +73,10 @@ class CTG_Ajax_Handlers {
     /** Get all attachments */
     function ctg_get_all_attachments() {
         check_ajax_referer( 'ctg_media_actions', 'security' );
+
+        if( ! current_user_can( 'manage_options' ) ) {
+            wp_die( 'You are not authorized to perform this action!' );
+        }
 
         $query_args = array(
             'post_type'      => 'attachment',
@@ -83,6 +95,10 @@ class CTG_Ajax_Handlers {
     /** Generate thumbnails for a single attachment by attachment ID */
     function ctg_regenerate_single_attachment_thumbnail() {
         check_ajax_referer( 'ctg_media_actions', 'security' );
+
+        if( ! current_user_can( 'manage_options' ) ) {
+            wp_die( 'You are not authorized to perform this action!' );
+        }
 
         if( ! isset( $_POST['attachment_id'] ) || empty( $_POST['attachment_id'] ) ) {
             wp_send_json_error( array( 'message' => 'Invalid argument' ) );
@@ -107,6 +123,10 @@ class CTG_Ajax_Handlers {
     /** Remove a custom thumbnail size without removing any existing thumbnail files */
     function ctg_ajax_remove_custom_size() {
         check_ajax_referer( 'ctg_media_actions', 'security' );
+
+        if( ! current_user_can( 'manage_options' ) ) {
+            wp_die( 'You are not authorized to perform this action!' );
+        }
 
         if( ! isset( $_POST['slug'] ) || empty( $_POST['slug'] ) ) {
             wp_send_json_error( 
