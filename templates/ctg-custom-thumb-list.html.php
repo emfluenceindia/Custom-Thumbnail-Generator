@@ -11,9 +11,7 @@
                 <th class="ctg-text-center">Action</th>
             </tr>
         </thead>
-        <?php 
-        $sizes = get_option( 'ctg_custom_image_sizes', array() );
-        ?>
+        <?php $sizes = get_option( 'ctg_custom_image_sizes', array() ); ?>
         <tbody class="ctg-sizes-list">
             <tr>
                 <?php foreach( $sizes as $slug => $size ): ?>

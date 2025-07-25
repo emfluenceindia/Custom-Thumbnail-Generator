@@ -136,51 +136,76 @@ class CTG_Ajax_Handlers {
             wp_send_json_error( array( 'message' => 'Invalid or no attachment information!' ) );
         }
 
-        if( ! isset( $_POST['size'] ) || empty( $_POST['size'] ) ) {
-            wp_send_json_error( array( 'message' => 'Invalid or no matching thumbnails size found!' ) );
+        if( ! isset( $_POST['i_width'] ) || empty( $_POST['i_width'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid paramter value: Width!' ) );
         }
 
-        $id = (int)$_POST['attachment_id'];
-        if( ! $id ) {
-            wp_send_json_error( array( 'message' => 'Invalid ID' ) );
+        if( ! isset( $_POST['i_height'] ) || empty( $_POST['i_height'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid paramter value: Height!' ) );
         }
 
-        $size = sanitize_text_field( $_POST[ 'size' ] );
-        $file = get_attached_file( $id );
+        if( ! isset( $_POST['i_crop'] ) || empty( $_POST['i_crop'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid paramter value: Width!' ) );
+        }
+
+        if( ! isset( $_POST['i_size'] ) || empty( $_POST['i_size'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid paramter value: Size!' ) );
+        }
+
+        $id     = (int)sanitize_text_field( $_POST['attachment_id'] );
+        $width  = (int)sanitize_text_field( $_POST['i_width'] );
+        $height = (int)sanitize_text_field( $_POST['i_height'] );
+        $crop   = (int)sanitize_text_field( $_POST['i_crop'] );
+        $size   = sanitize_text_field( $_POST['i_size'] );
+
+        if( ! $id || ! $width || ! $height || ! $crop ) {
+            wp_send_json_error( array( 
+                'status' => false, 
+                'message' => 'One or more parameters have invalid values',
+                'data' => array(
+                    'id' => $id,
+                    'width' => $width,
+                    'height' => $height,
+                    'crop' => $crop,
+                    'size' => $size
+                )
+            ) ) ;
+        }
+
+        $file   = get_attached_file( $id );
         $editor = wp_get_image_editor( $file );
+        if( 1 === $crop ) $crop = true; else $crop = false;
 
         if( is_wp_error( $editor ) ) {
             wp_send_json_error( array( 'message' => 'Image editor error!' ) );
         }
 
-        // $editor->resize(  )
+        $editor->resize( $width, $height, $crop );
+        $filename = $editor->generate_filename(); // No suffix. Let WordPress uses the default
+        $saved = $editor->save( $filename );
 
-        // Update metadata
-
+        if( is_wp_error( $saved ) ) {
+            wp_send_json_error( array( 'message' => 'Save operation failed!' ) );
+        }
 
         require_once ABSPATH . 'wp-admin/includes/image.php';
+
+        $metadata = wp_get_attachment_metadata( $id );
+        $metadata['sizes'][$size] = array(
+            'file'      => basename( $saved['file'] ),
+            'width'     => $saved['width'],
+            'height'    => $saved['height'],
+            'mime-type' => $saved['mime-type']
+        );
+
+        wp_update_attachment_metadata( $id, $metadata );
+
         $metadata = wp_generate_attachment_metadata( $id, $file );
 
         if( $metadata ) {
-            wp_update_attachment_metadata( $id, $metadata );
-
-            // Regenerate the specific thumbnail size
-            $image = wp_get_attachment_metadata( $id );
-
-            if( isset( $image[ 'sizes' ][ $size ] ) ) {
-                $size_data = $image[ 'sizes' ][ $size ];
-                $size_path = path_join( dirname( $file ), $size_data[ 'file' ] );
-
-                if( file_exists( $size_path ) ) {
-                    unlink( $size_path );
-                }
-
-                wp_update_attachment_metadata( $id, $image );
-            }
-
-            wp_send_json_success( array( 'message' => 'Success' ) );
+            wp_send_json_success( array( 'status' => true, 'message' => 'Successfully generated all ' . $width . 'x' . $height . ' thumbnails.') );
         } else {
-            wp_send_json_error( array( 'message' => 'Failed' ) );
+            wp_send_json_error( array( 'message' => 'Generation failed!' ) );
         }
     }
 
