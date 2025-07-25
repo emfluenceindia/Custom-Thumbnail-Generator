@@ -62,6 +62,12 @@
         null,
         '1.0'
     );
+
+    /** Enqueue FontSAwesome */
+    wp_enqueue_style(
+      'ctg-fa-css',
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'
+    );
  }
 
  /**

@@ -22,7 +22,14 @@
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
                         <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
-                        <td class="ctg-text-center"><button data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-delete-custom-size">Remove</button></td>
+                        <td class="ctg-text-center">
+                            <button title="Regenerate" data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-regen-thumbs">
+                                <i class="fa fa-recycle" aria-hidden="true"></i>
+                            </button>
+                            <button title="Remove" data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-delete-custom-size">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tr>
