@@ -52,7 +52,7 @@
         <div id="ctg-generator-ui">
             <hr />
             <p>Some of your previous attachments may be missing Custom Thumbnail Generator thumbnails.</p>
-            <button id="ctg-regenerate" class="button button-secondary">Regenerate Thumbnails</button>
+            <button id="ctg-regenerate" class="button button-secondary"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Regenerate Thumbnails</button>
             <div id="ctg-progressbar">
                 <div id="ctg-progress"></div>
                 <div id="ctg-percentage-increment"></div>
