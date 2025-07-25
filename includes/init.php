@@ -43,7 +43,8 @@
      */
     wp_enqueue_script(
       'ctg-media-actions-script',
-      plugin_dir_url( __DIR__ ) . 'assets/js/ctg-media-actions.min.js',
+      // plugin_dir_url( __DIR__ ) . 'assets/js/ctg-media-actions.min.js',
+      plugin_dir_url( __DIR__ ) . 'assets/raw/ctg-media-actions.js',
       array( 'jquery' ), '1.0', true
     );
 

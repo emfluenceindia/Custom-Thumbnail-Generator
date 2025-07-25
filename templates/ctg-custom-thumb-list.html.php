@@ -17,17 +17,27 @@
         <tbody class="ctg-sizes-list">
             <tr>
                 <?php foreach( $sizes as $slug => $size ): ?>
-                    <tr class="ctg-custom-sizes-row">
+                    <?php $crop = ( ! empty( esc_html( $size[ 'crop' ] ) ) ) ? 1 : 0; ?>
+                    <tr class="ctg-1m-0-false">
                         <td class="ctg-title-cell"><?php echo wp_kses_post( $slug ); ?> </td>
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
                         <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
                         <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
                         <td class="ctg-text-center">
-                            <button title="Regenerate" data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-regen-thumbs">
-                                <i class="fa fa-recycle" aria-hidden="true"></i>
+                            <button title="Regenerate"
+                                data-width="<?php echo esc_attr( $size[ 'width' ] ); ?>"
+                                data-height="<?php echo esc_attr( $size[ 'height' ] ) ?>"
+                                data-crop="<?php echo esc_attr( $crop ) ?>"    
+                                data-slug="<?php echo esc_attr( $slug ); ?>" 
+                                class="button ctg-regen-thumbs">
+                                    <i class="fa fa-recycle" aria-hidden="true"></i>
                             </button>
-                            <button title="Remove" data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-delete-custom-size">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            <button title="Remove" 
+                                data-width="<?php echo esc_attr( $size[ 'width' ] ); ?>"
+                                data-height="<?php echo esc_attr( $size[ 'height' ] ) ?>"
+                                data-crop="<?php echo esc_attr( $crop ) ?>"
+                                data-slug="<?php echo esc_attr( $slug ); ?>" class="button ctg-delete-custom-size">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </td>
                     </tr>

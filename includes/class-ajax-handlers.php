@@ -9,6 +9,7 @@ class CTG_Ajax_Handlers {
 
         add_action( 'wp_ajax_ctg_get_attachments', array( $this, 'ctg_get_all_attachments' ) );
         add_action( 'wp_ajax_ctg_regenerate_single', array( $this, 'ctg_regenerate_single_attachment_thumbnail' ) );
+        add_action( 'wp_ajax_ctg_regenerate_single_slug', array( $this, 'ctg_regenerate_single_attachment_thumbnail_slug' ) );
 
         add_action( 'wp_ajax_ctg_reload_thumb_list', array( $this, 'ctg_ajax_load_thumb_list' ) );
     }
@@ -114,6 +115,69 @@ class CTG_Ajax_Handlers {
 
         if( $metadata ) {
             wp_update_attachment_metadata( $id, $metadata );
+            wp_send_json_success( array( 'message' => 'Success' ) );
+        } else {
+            wp_send_json_error( array( 'message' => 'Failed' ) );
+        }
+    }
+
+    /**
+     * When regenerating thumbnail or a particular slug
+     * Useful when a new size is added and the thumbnails are regenerated for that size only
+     */
+    function ctg_regenerate_single_attachment_thumbnail_slug() {
+        check_ajax_referer( 'ctg_media_actions', 'security' );
+
+        if( ! current_user_can( 'manage_options' ) ) {
+            wp_die( 'You are not authorized to perform this action!' );
+        }
+
+        if( ! isset( $_POST['attachment_id'] ) || empty( $_POST['attachment_id'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid or no attachment information!' ) );
+        }
+
+        if( ! isset( $_POST['size'] ) || empty( $_POST['size'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid or no matching thumbnails size found!' ) );
+        }
+
+        $id = (int)$_POST['attachment_id'];
+        if( ! $id ) {
+            wp_send_json_error( array( 'message' => 'Invalid ID' ) );
+        }
+
+        $size = sanitize_text_field( $_POST[ 'size' ] );
+        $file = get_attached_file( $id );
+        $editor = wp_get_image_editor( $file );
+
+        if( is_wp_error( $editor ) ) {
+            wp_send_json_error( array( 'message' => 'Image editor error!' ) );
+        }
+
+        // $editor->resize(  )
+
+        // Update metadata
+
+
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+        $metadata = wp_generate_attachment_metadata( $id, $file );
+
+        if( $metadata ) {
+            wp_update_attachment_metadata( $id, $metadata );
+
+            // Regenerate the specific thumbnail size
+            $image = wp_get_attachment_metadata( $id );
+
+            if( isset( $image[ 'sizes' ][ $size ] ) ) {
+                $size_data = $image[ 'sizes' ][ $size ];
+                $size_path = path_join( dirname( $file ), $size_data[ 'file' ] );
+
+                if( file_exists( $size_path ) ) {
+                    unlink( $size_path );
+                }
+
+                wp_update_attachment_metadata( $id, $image );
+            }
+
             wp_send_json_success( array( 'message' => 'Success' ) );
         } else {
             wp_send_json_error( array( 'message' => 'Failed' ) );
