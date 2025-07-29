@@ -144,7 +144,7 @@ class CTG_Ajax_Handlers {
             wp_send_json_error( array( 'message' => 'Invalid thumbnail size info.' ) );
         }
 
-        $target_size = sanitize_text_field( $_POST['slug'] );
+        $target_size = sanitize_text_field( wp_unslash( $_POST['slug'] ) );
         $registered_thumb_sizes = wp_get_registered_image_subsizes();
 
         if( ! isset( $registered_thumb_sizes[$target_size] ) ) {

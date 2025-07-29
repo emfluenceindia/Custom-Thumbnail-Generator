@@ -5,12 +5,12 @@
 
  define( 'CTG_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
  define( 'CTG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
- define( 'CTG_PLUGIN_DIR', dirname( plugin_dir_url( __FILE__ ) ) );
  define( 'CTG_TEMPLATE_DIR', plugin_dir_path( __DIR__ ) . 'templates/' );
+ define( 'CTG_PLUGIN_DIR', plugin_dir_url( __DIR__ ) );
 
  define( 'WP_NATIVE_THUMB_SIZES', [ 'thumbnail', 'medium', 'medium_large', 'large' ] );
 
- define( 'CTG_LOGO', plugin_dir_url( __DIR__ ) . 'assets/images/icon-64x64.png' );
+ define( 'CTG_LOGO', CTG_PLUGIN_DIR . 'assets/images/icon-64x64.png' );
 
  define( 'ALLOWED_TAGS', array(
   'form'     => [ 'action' => [], 'method' => [], 'id' => [], 'class' => [] ],
@@ -42,8 +42,8 @@
      */
     wp_enqueue_script(
       'ctg-media-actions-script',
-      // plugin_dir_url( __DIR__ ) . 'assets/js/ctg-media-actions.min.js',
-      plugin_dir_url( __DIR__ ) . 'assets/raw/ctg-media-actions.js',
+      // CTG_PLUGIN_DIR . 'assets/js/ctg-media-actions.min.js',
+      CTG_PLUGIN_DIR . 'assets/raw/ctg-media-actions.js',
       array( 'jquery' ), '1.0', true
     );
 
@@ -58,7 +58,7 @@
     /** Enqueue admin settings page CSS */
     wp_enqueue_style(
         'ctg-admin.css',
-        plugin_dir_url( __DIR__ ) .  'assets/css/ctg-admin.min.css',
+        CTG_PLUGIN_DIR .  'assets/css/ctg-admin.min.css',
         null,
         '1.0'
     );
@@ -66,7 +66,8 @@
     /** Enqueue FontSAwesome */
     wp_enqueue_style(
       'ctg-fa-css',
-      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'
+      CTG_PLUGIN_DIR . 'assets/css/font-awesome.min.css',
+      null, '4.7.0', 'all'
     );
  }
 
