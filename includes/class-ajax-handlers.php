@@ -9,7 +9,7 @@ class CTG_Ajax_Handlers {
 
         add_action( 'wp_ajax_ctg_get_attachments', array( $this, 'ctg_get_all_attachments' ) );
         add_action( 'wp_ajax_ctg_regenerate_single', array( $this, 'ctg_regenerate_single_attachment_thumbnail' ) );
-        add_action( 'wp_ajax_ctg_regenerate_single_slug', array( $this, 'ctg_regenerate_single_attachment_thumbnail_slug' ) );
+        add_action( 'wp_ajax_ctg_regenerate_single_slug', array( $this, 'ctg_regenerate_thumbs_for_single_size' ) );
 
         add_action( 'wp_ajax_ctg_reload_thumb_list', array( $this, 'ctg_ajax_load_thumb_list' ) );
     }
@@ -46,8 +46,16 @@ class CTG_Ajax_Handlers {
         $sizes[ $slug ] = compact( 'width', 'height', 'crop' );
         update_option( 'ctg_custom_image_sizes', $sizes );
 
-        $str_message = "The requested thumbnail size ($width px x $height px) has been generated";
-        wp_send_json_success( $str_message );
+        // Register this image size immediately
+        add_image_size( $slug, $width, $height, $crop );
+
+        $registered_sizes = wp_get_registered_image_subsizes();
+        wp_send_json_success( array(
+            'custom_sizes' => $registered_sizes,
+        ) );
+
+        // $str_message = "The requested thumbnail size ($width px x $height px) has been generated";
+        // wp_send_json_success( $str_message );
     }
 
     /** Load custom thumbnail list table */
@@ -125,88 +133,74 @@ class CTG_Ajax_Handlers {
      * When regenerating thumbnail or a particular slug
      * Useful when a new size is added and the thumbnails are regenerated for that size only
      */
-    function ctg_regenerate_single_attachment_thumbnail_slug() {
+    function ctg_regenerate_thumbs_for_single_size() {
         check_ajax_referer( 'ctg_media_actions', 'security' );
 
         if( ! current_user_can( 'manage_options' ) ) {
             wp_die( 'You are not authorized to perform this action!' );
         }
 
-        if( ! isset( $_POST['attachment_id'] ) || empty( $_POST['attachment_id'] ) ) {
-            wp_send_json_error( array( 'message' => 'Invalid or no attachment information!' ) );
+        if( ! isset( $_POST['slug'] ) || empty( $_POST['slug'] ) || ! is_string( $_POST['slug'] ) ) {
+            wp_send_json_error( array( 'message' => 'Invalid thumbnail size info.' ) );
         }
 
-        if( ! isset( $_POST['i_width'] ) || empty( $_POST['i_width'] ) ) {
-            wp_send_json_error( array( 'message' => 'Invalid paramter value: Width!' ) );
+        $target_size = sanitize_text_field( $_POST['slug'] );
+        $registered_thumb_sizes = wp_get_registered_image_subsizes();
+
+        if( ! isset( $registered_thumb_sizes[$target_size] ) ) {
+            wp_send_json_error( 
+                array( 
+                    'success' => false, 
+                    'message' => 'Supplied thumb size is not defined.' 
+                ) 
+            );
         }
 
-        if( ! isset( $_POST['i_height'] ) || empty( $_POST['i_height'] ) ) {
-            wp_send_json_error( array( 'message' => 'Invalid paramter value: Height!' ) );
-        }
-
-        if( ! isset( $_POST['i_crop'] ) || empty( $_POST['i_crop'] ) ) {
-            wp_send_json_error( array( 'message' => 'Invalid paramter value: Width!' ) );
-        }
-
-        if( ! isset( $_POST['i_size'] ) || empty( $_POST['i_size'] ) ) {
-            wp_send_json_error( array( 'message' => 'Invalid paramter value: Size!' ) );
-        }
-
-        $id     = (int)sanitize_text_field( $_POST['attachment_id'] );
-        $width  = (int)sanitize_text_field( $_POST['i_width'] );
-        $height = (int)sanitize_text_field( $_POST['i_height'] );
-        $crop   = (int)sanitize_text_field( $_POST['i_crop'] );
-        $size   = sanitize_text_field( $_POST['i_size'] );
-
-        if( ! $id || ! $width || ! $height || ! $crop ) {
-            wp_send_json_error( array( 
-                'status' => false, 
-                'message' => 'One or more parameters have invalid values',
-                'data' => array(
-                    'id' => $id,
-                    'width' => $width,
-                    'height' => $height,
-                    'crop' => $crop,
-                    'size' => $size
-                )
-            ) ) ;
-        }
-
-        $file   = get_attached_file( $id );
-        $editor = wp_get_image_editor( $file );
-        if( 1 === $crop ) $crop = true; else $crop = false;
-
-        if( is_wp_error( $editor ) ) {
-            wp_send_json_error( array( 'message' => 'Image editor error!' ) );
-        }
-
-        $editor->resize( $width, $height, $crop );
-        $filename = $editor->generate_filename(); // No suffix. Let WordPress uses the default
-        $saved = $editor->save( $filename );
-
-        if( is_wp_error( $saved ) ) {
-            wp_send_json_error( array( 'message' => 'Save operation failed!' ) );
-        }
-
-        require_once ABSPATH . 'wp-admin/includes/image.php';
-
-        $metadata = wp_get_attachment_metadata( $id );
-        $metadata['sizes'][$size] = array(
-            'file'      => basename( $saved['file'] ),
-            'width'     => $saved['width'],
-            'height'    => $saved['height'],
-            'mime-type' => $saved['mime-type']
+        $query_args = array(
+            'post_type'      => 'attachment',
+            'post_status'    => 'inherit',
+            'posts_per_page' => -1,
+            'post_mime_type' => 'image',
         );
 
-        wp_update_attachment_metadata( $id, $metadata );
+        $attachments = get_posts( $query_args );
+        $count = 0;
 
-        $metadata = wp_generate_attachment_metadata( $id, $file );
+        foreach( $attachments as $att ) {
+            $id     = $att->ID;
+            $file   = get_attached_file( $id );
+            $editor = wp_get_image_editor( $file );
 
-        if( $metadata ) {
-            wp_send_json_success( array( 'status' => true, 'message' => 'Successfully generated all ' . $width . 'x' . $height . ' thumbnails.') );
-        } else {
-            wp_send_json_error( array( 'message' => 'Generation failed!' ) );
+            if( is_wp_error( $editor ) ) continue;
+
+            // Resize just the target size
+            $thumb_width  = $registered_thumb_sizes[$target_size]['width'];
+            $thumb_height = $registered_thumb_sizes[$target_size]['height'];
+            $thumb_crop   = $registered_thumb_sizes[$target_size]['crop'];
+
+            $editor->resize( $thumb_width, $thumb_height, $thumb_crop );
+            $saved = $editor->save();
+
+            if( is_wp_error( $saved ) ) continue;
+
+            // Update metadata for the specific size
+            $meta = wp_get_attachment_metadata( $id );
+            $meta['sizes'][$target_size] = array(
+                'file'      => basename( $saved['file'] ),
+                'width'     => $saved['width'],
+                'height'    => $saved['height'],
+                'mime-type' => $saved['mime-type'],
+            );
+
+            wp_update_attachment_metadata( $id, $meta );
+            
+            $count++;
         }
+
+        wp_send_json_success( array(
+            'success' => true,
+            'message' => $count . ' ' . $target_size .  ' thumbnails generated successfully.',
+        ) );
     }
 
     /** Remove a custom thumbnail size without removing any existing thumbnail files */
