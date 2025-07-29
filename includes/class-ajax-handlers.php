@@ -164,6 +164,16 @@ class CTG_Ajax_Handlers {
         );
 
         $attachments = get_posts( $query_args );
+
+        if( 0 === count( $attachments ) ) {
+            wp_send_json_error(
+                array(
+                    'success' => false,
+                    'message' => 'Media library has no image. Thumbnail generation failed.'
+                )
+            );
+        }
+
         $count = 0;
 
         foreach( $attachments as $att ) {
