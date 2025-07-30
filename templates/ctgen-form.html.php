@@ -51,7 +51,7 @@
         
         <div id="ctgen-generator-ui">
             <hr />
-            <p>Some of your previous attachments may be missing Custom Thumbnail Generator thumbnails.</p>
+            <p>Some of your previous attachment images may be missing custom created thumbnail sizes. Hit the button to regenerate all thumbnails.</p>
             <button id="ctgen-regenerate" class="button button-secondary">
                 <i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Regenerate Thumbnails
             </button>
