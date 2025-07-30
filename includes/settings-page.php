@@ -10,15 +10,15 @@
         'Custom Image Sizes',
         'Custom Thumbnail Generator',
         'manage_options',
-        'ctg-custom-sizes',
-        'ctg_render_settngs_page'
+        'ctgen-admin-settings',
+        'ctgen_render_settngs_page'
     );
  } );
 
  /**
   * HTML to render on Settings page
   */
- function ctg_render_settngs_page() {
+ function ctgen_render_settngs_page() {
     $ctg_functions = new CTGEN_Functions(); ?>
     
     <div class="wrap">

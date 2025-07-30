@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name: Custom Thumbnail Generator
+ * Plugin URI: https://github.com/emfluenceindia/Custom-Thumbnail-Generator
  * Description: Create theme-independent custom thumbnail sizes with Regenerate feature.
  * Version: 1.0.0
  * Author: Subrata Sarkar
@@ -8,6 +9,7 @@
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: custom-thumbnail-generator
+ * Domain Path: /languages
  * Method Prefix: ctgen_
  */
 
@@ -23,7 +25,7 @@
  */
  function ctgen_add_plugin_settings_links( $links ) {
     // Build the URL
-    $settings_url = admin_url( 'options-general.php?page=ctgen-custom-sizes' );
+    $settings_url = admin_url( 'options-general.php?page=ctgen-admin-settings' );
 
     // Create the HTML for the link
     $settings_link = '<a href="' . esc_url( $settings_url ) . '">' . __( 'Settings', 'custom-thumbnail-generator' ) . '</a>';
@@ -36,3 +38,12 @@
  }
 
  add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'ctgen_add_plugin_settings_links' );
+
+ /**
+  * Load text domain for translations
+  */
+ function ctgen_load_text_domain() {
+    load_plugin_textdomain( 'custom-thumbnail-generator', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+ }
+ 
+ add_action( 'plugins_loaded', 'ctgen_load_text_domain' );
