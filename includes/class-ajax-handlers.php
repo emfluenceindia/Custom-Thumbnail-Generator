@@ -169,7 +169,7 @@ class CTG_Ajax_Handlers {
             wp_send_json_error(
                 array(
                     'success' => false,
-                    'message' => 'Media library has no image. Thumbnail generation failed.'
+                    'message' => 'Media library contains no image. Thumbnail generation failed.'
                 )
             );
         }
