@@ -19,13 +19,13 @@
   * HTML to render on Settings page
   */
  function ctg_render_settngs_page() {
-    $ctg_functions = new CTG_Functions(); ?>
+    $ctg_functions = new CTGEN_Functions(); ?>
     
     <div class="wrap">
         <?php
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $ctg_functions->ctg_render_settings_page_form();
-        $ctg_functions->ctg_render_default_thumbnail_list_table();
+        echo $ctg_functions->ctgen_render_settings_page_form();
+        $ctg_functions->ctgen_render_default_thumbnail_list_table();
         ?>
     </div>
 

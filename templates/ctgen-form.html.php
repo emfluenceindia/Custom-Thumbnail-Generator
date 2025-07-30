@@ -1,5 +1,5 @@
-<h1 class="ctg-plugin-header">
-    <img src="<?php /* phpcs:disable PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */ echo esc_attr( CTG_LOGO ) ?>" alt="Custom Thumbnail Generator" />
+<h1 class="ctgen-plugin-header">
+    <img src="<?php /* phpcs:disable PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */ echo esc_attr( CTGEN_LOGO ) ?>" alt="Custom Thumbnail Generator" />
     <span>Custom Thumbnail Generator</span>
 </h1>
 <hr />
@@ -11,58 +11,58 @@
     switching themes, providing a consistent image handling.
 </p>
 
-<div id="ctg-action-container">
-    <div id="ctg-form-div">
-        <fieldset class="ctg-form-container">
+<div id="ctgen-action-container">
+    <div id="ctgen-form-div">
+        <fieldset class="ctgen-form-container">
             <h3>Add New Thumbnail Size</h3>
             <hr />
-            <form id="ctg-form" method="post">
-                <table class="ctg-form-table">
+            <form id="ctgen-form" method="post">
+                <table class="ctgen-form-table">
                     <tr>
                         <th>Width&nbsp;</th>
                         <td>
-                            <input type="number" min="25" name="ctg-width" id="ctg-width" required /> px
+                            <input type="number" min="25" name="ctgen-width" id="ctgen-width" required /> px
                         </td>
                     </tr>
                     <tr>
                         <th>Height&nbsp;</th>
                         <td>
-                            <input type="number" min="25" name="ctg-height" id="ctg-height" required /> px
+                            <input type="number" min="25" name="ctgen-height" id="ctgen-height" required /> px
                         </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
                         <td>
-                            <input type="checkbox" name="ctg-crop" id="ctg-crop" value="1" />
-                            &nbsp;<label for="ctg-crop">Allow crop</label>
+                            <input type="checkbox" name="ctgen-crop" id="ctgen-crop" value="1" />
+                            &nbsp;<label for="ctgen-crop">Allow crop</label>
                         </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
                         <td>
-                            <input type="submit" value="Add Thumbnail Size" class="button button-primary" id="ctg-addsise" name="ctg-addsize" />
+                            <input type="submit" value="Add Thumbnail Size" class="button button-primary" id="ctgen-addsise" name="ctgen-addsize" />
                         </td>
                     </tr>
                 </table>
 
-                <div id="ctg-form-response"></div>
+                <div id="ctgen-form-response"></div>
             </form>
         </fieldset>
         
-        <div id="ctg-generator-ui">
+        <div id="ctgen-generator-ui">
             <hr />
             <p>Some of your previous attachments may be missing Custom Thumbnail Generator thumbnails.</p>
-            <button id="ctg-regenerate" class="button button-secondary">
+            <button id="ctgen-regenerate" class="button button-secondary">
                 <i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Regenerate Thumbnails
             </button>
-            <div id="ctg-progressbar">
-                <div id="ctg-progress"></div>
-                <div id="ctg-percentage-increment"></div>
+            <div id="ctgen-progressbar">
+                <div id="ctgen-progress"></div>
+                <div id="ctgen-percentage-increment"></div>
             </div>
-            <div id="ctg-generator-status"></div>
+            <div id="ctgen-generator-status"></div>
         </div>
     </div>
 
-    <?php require_once 'ctg-custom-thumb-list.html.php' ?>
+    <?php require_once 'ctgen-custom-thumb-list.html.php' ?>
 </div>
 

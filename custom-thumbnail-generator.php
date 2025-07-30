@@ -8,7 +8,7 @@
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: custom-thumbnail-generator
- * Method Prefix: ctg_
+ * Method Prefix: ctgen_
  */
 
  if( ! defined( 'ABSPATH' ) ) exit;
@@ -21,9 +21,9 @@
   * @param  array $links An array of plugin action links
   * @return array An updated array of plugin action links
  */
- function ctg_add_plugin_settings_links( $links ) {
+ function ctgen_add_plugin_settings_links( $links ) {
     // Build the URL
-    $settings_url = admin_url( 'options-general.php?page=ctg-custom-sizes' );
+    $settings_url = admin_url( 'options-general.php?page=ctgen-custom-sizes' );
 
     // Create the HTML for the link
     $settings_link = '<a href="' . esc_url( $settings_url ) . '">' . __( 'Settings', 'custom-thumbnail-generator' ) . '</a>';
@@ -35,4 +35,4 @@
     return $links;
  }
 
- add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'ctg_add_plugin_settings_links' );
+ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'ctgen_add_plugin_settings_links' );

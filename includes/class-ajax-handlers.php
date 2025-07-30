@@ -1,22 +1,22 @@
 <?php
 
-class CTG_Ajax_Handlers {
+class CTGEN_Ajax_Handlers {
 
     public function __construct() {
         /** Action hooks */
-        add_action( 'wp_ajax_ctg_add_custom_size', array( $this, 'ctg_ajax_add_custom_size' ) );
-        add_action( 'wp_ajax_ctg_remove_custom_size', array( $this, 'ctg_ajax_remove_custom_size' ) );
+        add_action( 'wp_ajax_ctgen_add_custom_size', array( $this, 'ctgen_ajax_add_custom_size' ) );
+        add_action( 'wp_ajax_ctgen_remove_custom_size', array( $this, 'ctgen_ajax_remove_custom_size' ) );
 
-        add_action( 'wp_ajax_ctg_get_attachments', array( $this, 'ctg_get_all_attachments' ) );
-        add_action( 'wp_ajax_ctg_regenerate_single', array( $this, 'ctg_regenerate_single_attachment_thumbnail' ) );
-        add_action( 'wp_ajax_ctg_regenerate_single_slug', array( $this, 'ctg_regenerate_thumbs_for_single_size' ) );
+        add_action( 'wp_ajax_ctgen_get_attachments', array( $this, 'ctgen_get_all_attachments' ) );
+        add_action( 'wp_ajax_ctgen_regenerate_single', array( $this, 'ctgen_regenerate_single_attachment_thumbnail' ) );
+        add_action( 'wp_ajax_ctgen_regenerate_single_slug', array( $this, 'ctgen_regenerate_thumbs_for_single_size' ) );
 
-        add_action( 'wp_ajax_ctg_reload_thumb_list', array( $this, 'ctg_ajax_load_thumb_list' ) );
+        add_action( 'wp_ajax_ctgen_reload_thumb_list', array( $this, 'ctgen_ajax_load_thumb_list' ) );
     }
 
     /** Add new thumbnail size */
-    function ctg_ajax_add_custom_size() {
-        check_ajax_referer( 'ctg_media_actions', 'security' );
+    function ctgen_ajax_add_custom_size() {
+        check_ajax_referer( 'ctgen_media_actions', 'security' );
 
         if( ! current_user_can( 'manage_options' ) ) {
             wp_die( 'You are not authorized to perform this action!' );
@@ -24,16 +24,16 @@ class CTG_Ajax_Handlers {
 
         $fld_validation_message = __( 'Not all field values are supplied!', 'custom-thumbnail-generator' );
 
-        if( ! isset( $_POST[ 'ctg-width' ] ) || ! isset( $_POST[ 'ctg-height' ] ) ) {
+        if( ! isset( $_POST[ 'ctgen-width' ] ) || ! isset( $_POST[ 'ctgen-height' ] ) ) {
             wp_send_json_error( $fld_validation_message );
         }
 
-        $width  = absint( sanitize_text_field( wp_unslash( $_POST[ 'ctg-width' ] ) ) );
-        $height = absint( sanitize_text_field( wp_unslash( $_POST[ 'ctg-height' ] ) ) );
-        $crop   = sanitize_text_field( isset( $_POST[ 'ctg-crop' ] ) );
-        $slug   = 'ctg_' . $width . 'x' . $height;
+        $width  = absint( sanitize_text_field( wp_unslash( $_POST[ 'ctgen-width' ] ) ) );
+        $height = absint( sanitize_text_field( wp_unslash( $_POST[ 'ctgen-height' ] ) ) );
+        $crop   = sanitize_text_field( isset( $_POST[ 'ctgen-crop' ] ) );
+        $slug   = 'ctgen_' . $width . 'x' . $height;
 
-        $sizes = get_option( 'ctg_custom_image_sizes', array() );;
+        $sizes = get_option( 'ctgen_custom_image_sizes', array() );;
 
         $str_message = "";
 
@@ -44,7 +44,7 @@ class CTG_Ajax_Handlers {
         }
 
         $sizes[ $slug ] = compact( 'width', 'height', 'crop' );
-        update_option( 'ctg_custom_image_sizes', $sizes );
+        update_option( 'ctgen_custom_image_sizes', $sizes );
 
         // Register this image size immediately
         add_image_size( $slug, $width, $height, $crop );
@@ -59,14 +59,14 @@ class CTG_Ajax_Handlers {
     }
 
     /** Load custom thumbnail list table */
-    function ctg_ajax_load_thumb_list() {
-        check_ajax_referer( 'ctg_media_actions', 'security' );
+    function ctgen_ajax_load_thumb_list() {
+        check_ajax_referer( 'ctgen_media_actions', 'security' );
 
         if( ! current_user_can( 'manage_options' ) ) {
             wp_die( 'You are not authorized to perform this action!' );
         }
 
-        $html_template = CTG_TEMPLATE_DIR . 'ctg-custom-thumb-list.html.php';
+        $html_template = CTGEN_TEMPLATE_DIR . 'ctgen-custom-thumb-list.html.php';
         ob_start();
         include( $html_template );
         $template = ob_get_clean();
@@ -80,8 +80,8 @@ class CTG_Ajax_Handlers {
     }
 
     /** Get all attachments */
-    function ctg_get_all_attachments() {
-        check_ajax_referer( 'ctg_media_actions', 'security' );
+    function ctgen_get_all_attachments() {
+        check_ajax_referer( 'ctgen_media_actions', 'security' );
 
         if( ! current_user_can( 'manage_options' ) ) {
             wp_die( 'You are not authorized to perform this action!' );
@@ -102,8 +102,8 @@ class CTG_Ajax_Handlers {
     }
 
     /** Generate thumbnails for a single attachment by attachment ID */
-    function ctg_regenerate_single_attachment_thumbnail() {
-        check_ajax_referer( 'ctg_media_actions', 'security' );
+    function ctgen_regenerate_single_attachment_thumbnail() {
+        check_ajax_referer( 'ctgen_media_actions', 'security' );
 
         if( ! current_user_can( 'manage_options' ) ) {
             wp_die( 'You are not authorized to perform this action!' );
@@ -133,8 +133,8 @@ class CTG_Ajax_Handlers {
      * When regenerating thumbnail or a particular slug
      * Useful when a new size is added and the thumbnails are regenerated for that size only
      */
-    function ctg_regenerate_thumbs_for_single_size() {
-        check_ajax_referer( 'ctg_media_actions', 'security' );
+    function ctgen_regenerate_thumbs_for_single_size() {
+        check_ajax_referer( 'ctgen_media_actions', 'security' );
 
         if( ! current_user_can( 'manage_options' ) ) {
             wp_die( 'You are not authorized to perform this action!' );
@@ -214,8 +214,8 @@ class CTG_Ajax_Handlers {
     }
 
     /** Remove a custom thumbnail size without removing any existing thumbnail files */
-    function ctg_ajax_remove_custom_size() {
-        check_ajax_referer( 'ctg_media_actions', 'security' );
+    function ctgen_ajax_remove_custom_size() {
+        check_ajax_referer( 'ctgen_media_actions', 'security' );
 
         if( ! current_user_can( 'manage_options' ) ) {
             wp_die( 'You are not authorized to perform this action!' );
@@ -232,11 +232,11 @@ class CTG_Ajax_Handlers {
 
         $slug = sanitize_text_field( wp_unslash( $_POST['slug'] ) );
 
-        $sizes = get_option( 'ctg_custom_image_sizes', array() );
+        $sizes = get_option( 'ctgen_custom_image_sizes', array() );
 
         if( isset( $sizes[ $slug ] ) ) {
             unset( $sizes[ $slug ] );
-            update_option( 'ctg_custom_image_sizes', $sizes );
+            update_option( 'ctgen_custom_image_sizes', $sizes );
         }
 
         wp_send_json_success(

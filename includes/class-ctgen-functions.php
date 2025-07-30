@@ -1,8 +1,8 @@
 <?php
-class CTG_Functions {
+class CTGEN_Functions {
 
     /** Render default image sizes registered by WordPress and the currently active theme */
-    private function ctg_default_and_theme_based_image_sizes() {
+    private function ctgen_default_and_theme_based_image_sizes() {
         global $_wp_additional_image_sizes;
 
         $sizes = array();
@@ -32,11 +32,11 @@ class CTG_Functions {
     }
 
     /** Render custom thumbnail sizes registered by Custom Thumbnail Generator */
-    public function ctg_render_default_thumbnail_list_table() {
-        $default_sizes = $this->ctg_default_and_theme_based_image_sizes(); ?>
+    public function ctgen_render_default_thumbnail_list_table() {
+        $default_sizes = $this->ctgen_default_and_theme_based_image_sizes(); ?>
         <h2>Default Thumbnails</h2>
 
-        <table class="widefat ctg-list-table">
+        <table class="widefat ctgen-list-table">
             <thead>
                 <tr>
                     <th class="ctg-title-cell">Name</th>
@@ -50,13 +50,13 @@ class CTG_Functions {
                 <?php
                 if( ! empty( $default_sizes ) ) {
                     foreach( $default_sizes as $slug => $size ) { 
-                        if( 0 === strpos( strtolower( $slug ), 'ctg_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
+                        if( 0 === strpos( strtolower( $slug ), 'ctgen_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
 
                         <tr>
                             <td class="ctg-title-cell"><?php echo esc_html( $slug ); ?> </td>
                             <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
                             <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
-                            <td class="ctg-text-center"><?php echo wp_kses_post( $this->ctg_get_size_table_title( $slug ) ); ?></td>
+                            <td class="ctg-text-center"><?php echo wp_kses_post( $this->ctgen_get_size_table_title( $slug ) ); ?></td>
                             <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
                         </tr>
                     <?php }
@@ -69,19 +69,19 @@ class CTG_Functions {
     }
 
     /** Display thumbnail source */
-    private function ctg_get_size_table_title( $slug ) {
+    private function ctgen_get_size_table_title( $slug ) {
         if( in_array( $slug, WP_NATIVE_THUMB_SIZES ) ) {
-            $slug = wp_kses_post( "<span class='ctg-image-size-register-by'>WordPress Core</span>" );
+            $slug = wp_kses_post( "<span class='ctgen-image-size-register-by'>WordPress Core</span>" );
         } else {
-            $slug = wp_kses_post( "<span class='ctg-image-size-register-by'>" . wp_get_theme()->get( 'Name' ) ) . "</span>";
+            $slug = wp_kses_post( "<span class='ctgen-image-size-register-by'>" . wp_get_theme()->get( 'Name' ) ) . "</span>";
         }
 
         return $slug;
     }
 
     /** Render the form */
-    public function ctg_render_settings_page_form() {
-        $html_template = CTG_TEMPLATE_DIR . 'ctg-form.html.php';
+    public function ctgen_render_settings_page_form() {
+        $html_template = CTGEN_TEMPLATE_DIR . 'ctgen-form.html.php';
     
         if( ! file_exists( $html_template ) ) {
             echo '<p class="ctg-common-error">Error! Template file missing.</p>';
