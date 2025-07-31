@@ -34,37 +34,39 @@ class CTGEN_Functions {
     /** Render custom thumbnail sizes registered by Custom Thumbnail Generator */
     public function ctgen_render_default_thumbnail_list_table() {
         $default_sizes = $this->ctgen_default_and_theme_based_image_sizes(); ?>
-        <h2>Default Thumbnails</h2>
 
-        <table class="widefat ctgen-list-table">
-            <thead>
-                <tr>
-                    <th class="ctg-title-cell">Name</th>
-                    <th class="ctg-text-center">Width</th>
-                    <th class="ctg-text-center">Height</th>
-                    <th class="ctg-text-center">Source</th>
-                    <th class="ctg-text-center">Crop</th>
-                </tr>
-            </thead>
-            <tbody id="ctg-sizes-list">
-                <?php
-                if( ! empty( $default_sizes ) ) {
-                    foreach( $default_sizes as $slug => $size ) { 
-                        if( 0 === strpos( strtolower( $slug ), 'ctgen_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
+        <div class="ctgen-form-container">
+            <h3>Default Thumbnails</h3>
 
-                        <tr>
-                            <td class="ctg-title-cell"><?php echo esc_html( $slug ); ?> </td>
-                            <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
-                            <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
-                            <td class="ctg-text-center"><?php echo wp_kses_post( $this->ctgen_get_size_table_title( $slug ) ); ?></td>
-                            <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
-                        </tr>
-                    <?php }
-                }
-                ?>
-            </tbody>
-        </table>
+            <table class="widefat ctgen-list-table">
+                <thead>
+                    <tr>
+                        <th class="ctg-title-cell">Name</th>
+                        <th class="ctg-text-center">Width</th>
+                        <th class="ctg-text-center">Height</th>
+                        <th class="ctg-text-center">Source</th>
+                        <th class="ctg-text-center">Crop</th>
+                    </tr>
+                </thead>
+                <tbody id="ctg-sizes-list">
+                    <?php
+                    if( ! empty( $default_sizes ) ) {
+                        foreach( $default_sizes as $slug => $size ) { 
+                            if( 0 === strpos( strtolower( $slug ), 'ctgen_' ) ) continue; // This is registered by the plugin. We will not consider it in default sizes. ?>
 
+                            <tr>
+                                <td class="ctg-title-cell"><?php echo esc_html( $slug ); ?> </td>
+                                <td class="ctg-text-center"><?php echo esc_html( $size[ 'width' ] ); ?>px</td>
+                                <td class="ctg-text-center"><?php echo esc_html( $size[ 'height' ] ); ?>px</td>
+                                <td class="ctg-text-center"><?php echo wp_kses_post( $this->ctgen_get_size_table_title( $slug ) ); ?></td>
+                                <td class="ctg-text-center"><?php echo $size[ 'crop' ] ? '<span class="yes">✔</span>' : '<span class="no">✖</span>'; ?></td>
+                            </tr>
+                        <?php }
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
         <?php
     }
 
