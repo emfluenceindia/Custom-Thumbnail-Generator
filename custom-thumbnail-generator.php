@@ -38,12 +38,3 @@
  }
 
  add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'ctgen_add_plugin_settings_links' );
-
- /**
-  * Load text domain for translations
-  */
- function ctgen_load_text_domain() {
-    load_plugin_textdomain( 'custom-thumbnail-generator', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
- }
- 
- add_action( 'plugins_loaded', 'ctgen_load_text_domain' );
