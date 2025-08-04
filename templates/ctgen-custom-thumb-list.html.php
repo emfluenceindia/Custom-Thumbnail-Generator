@@ -43,4 +43,9 @@
             </tr>
         </tbody>
     </table>
+    <?php if( empty( $sizes ) ) : ?>
+    <div id="ctgen-no-custom-sizes">
+        You don't have any custom thumbnail sizes yet! <a id="ctgen-btn-shift-focus">CREATE NOW</a>.<br />They will remain accessible across the website and won't be removed even yu switch your theme.
+    </div>
+    <?php endif; ?>
 </div>

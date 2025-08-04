@@ -51,10 +51,11 @@
         
         <div id="ctgen-generator-ui">
             <hr />
-            <p>Some of your previous attachment images may be missing custom created thumbnail sizes. Hit the button to regenerate all thumbnails.</p>
+            <p>Hit the button below to (re)generate all thumbnails.</p>
             <button id="ctgen-regenerate" class="button button-secondary">
                 <i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Regenerate Thumbnails
             </button>
+            <p>For a specific thumbnail size, hit the corresponding green button ( <i class="fa fa-recycle ctgen-regen-thumbs inline" aria-hidden="true"></i> ) in the table.&nbsp;<i class="fa fa-hand-o-right ctgen-arrow-pointer" aria-hidden="true"></i></p>
             <div id="ctgen-progressbar">
                 <div id="ctgen-progress"></div>
                 <div id="ctgen-percentage-increment"></div>
