@@ -36,16 +36,16 @@ class CTGEN_Functions {
         $default_sizes = $this->ctgen_default_and_theme_based_image_sizes(); ?>
 
         <div class="ctgen-form-container">
-            <h3>Default Thumbnails</h3>
+            <h3><?php esc_html_e( 'Default Thumbnails', 'custom-thumbnail-generator' ); ?></h3>
 
             <table class="widefat ctgen-list-table">
                 <thead>
                     <tr>
-                        <th class="ctg-title-cell">Name</th>
-                        <th class="ctg-text-center">Width</th>
-                        <th class="ctg-text-center">Height</th>
-                        <th class="ctg-text-center">Source</th>
-                        <th class="ctg-text-center">Crop</th>
+                        <th class="ctg-title-cell"><?php esc_html_e( 'Name', 'custom-thumbnail-generator' ); ?></th>
+                        <th class="ctg-text-center"><?php esc_html_e( 'Width', 'custom-thumbnail-generator' ); ?></th>
+                        <th class="ctg-text-center"><?php esc_html_e( 'Height', 'custom-thumbnail-generator' ); ?></th>
+                        <th class="ctg-text-center"><?php esc_html_e( 'Source', 'custom-thumbnail-generator' ); ?></th>
+                        <th class="ctg-text-center"><?php esc_html_e( 'Crop', 'custom-thumbnail-generator' ); ?></th>
                     </tr>
                 </thead>
                 <tbody id="ctg-sizes-list">
