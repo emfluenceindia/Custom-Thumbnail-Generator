@@ -1,0 +1,139 @@
+# Copyright (C) 2025 Subrata Sarkar
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Thumbnail Generator 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/custom-thumbnail-generator\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-08-05T04:39:22+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: custom-thumbnail-generator\n"
+
+#. Plugin Name of the plugin
+#: custom-thumbnail-generator.php
+#: templates/ctgen-form.html.php:3
+msgid "Custom Thumbnail Generator"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: custom-thumbnail-generator.php
+msgid "https://github.com/emfluenceindia/Custom-Thumbnail-Generator"
+msgstr ""
+
+#. Description of the plugin
+#: custom-thumbnail-generator.php
+msgid "Create theme-independent custom thumbnail sizes with Regenerate feature."
+msgstr ""
+
+#. Author of the plugin
+#: custom-thumbnail-generator.php
+msgid "Subrata Sarkar"
+msgstr ""
+
+#. Author URI of the plugin
+#: custom-thumbnail-generator.php
+msgid "https://profiles.wordpress.org/subrataemfluence"
+msgstr ""
+
+#: custom-thumbnail-generator.php:31
+msgid "Settings"
+msgstr ""
+
+#: includes/class-ajax-handlers.php:25
+msgid "Not all field values are supplied!"
+msgstr ""
+
+#: includes/class-ctgen-functions.php:39
+msgid "Default Thumbnails"
+msgstr ""
+
+#: includes/class-ctgen-functions.php:44
+#: templates/ctgen-custom-thumb-list.html.php:7
+msgid "Name"
+msgstr ""
+
+#: includes/class-ctgen-functions.php:45
+#: templates/ctgen-custom-thumb-list.html.php:8
+#: templates/ctgen-form.html.php:16
+msgid "Width"
+msgstr ""
+
+#: includes/class-ctgen-functions.php:46
+#: templates/ctgen-custom-thumb-list.html.php:9
+#: templates/ctgen-form.html.php:22
+msgid "Height"
+msgstr ""
+
+#: includes/class-ctgen-functions.php:47
+msgid "Source"
+msgstr ""
+
+#: includes/class-ctgen-functions.php:48
+#: templates/ctgen-custom-thumb-list.html.php:10
+msgid "Crop"
+msgstr ""
+
+#: templates/ctgen-custom-thumb-list.html.php:2
+msgid "Custom Thumbnails"
+msgstr ""
+
+#: templates/ctgen-custom-thumb-list.html.php:11
+msgid "Action"
+msgstr ""
+
+#: templates/ctgen-custom-thumb-list.html.php:25
+msgid "Regenerate"
+msgstr ""
+
+#: templates/ctgen-custom-thumb-list.html.php:33
+msgid "Remove"
+msgstr ""
+
+#: templates/ctgen-custom-thumb-list.html.php:48
+msgid "You don't have any custom thumbnail sizes yet!"
+msgstr ""
+
+#: templates/ctgen-custom-thumb-list.html.php:49
+msgid "CREATE NOW"
+msgstr ""
+
+#: templates/ctgen-custom-thumb-list.html.php:50
+msgid "They will remain accessible across the website even you switch the theme."
+msgstr ""
+
+#: templates/ctgen-form.html.php:6
+msgid "Custom Thumbnail Generator ensures that all custom thumbnail sizes defined through the plugin are registered and seamlessly integrated into the environment as long as the plugin remains active. They remain fully accessible and functional throughout the application, even when switching themes, providing a consistent image handling."
+msgstr ""
+
+#: templates/ctgen-form.html.php:11
+msgid "Add New Thumbnail Size"
+msgstr ""
+
+#: templates/ctgen-form.html.php:31
+msgid "Allow Crop"
+msgstr ""
+
+#: templates/ctgen-form.html.php:37
+msgid "Add Thumbnail Size"
+msgstr ""
+
+#: templates/ctgen-form.html.php:48
+msgid "Hit the button below to (re)generate all thumbnails."
+msgstr ""
+
+#: templates/ctgen-form.html.php:50
+msgid "Regenerate Thumbnails"
+msgstr ""
+
+#: templates/ctgen-form.html.php:52
+msgid "For a specific thumbnail size, hit the corresponding green button "
+msgstr ""
+
+#: templates/ctgen-form.html.php:52
+msgid " in the table."
+msgstr ""
