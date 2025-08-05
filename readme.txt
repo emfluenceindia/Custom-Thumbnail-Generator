@@ -8,7 +8,7 @@ Stable tag: 1.0.0
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-The plugin registers and integrates all defined custom thumbnail sizes into the WordPress environment. They remain accessible and functional across all themes. It also offers thumbnail regeneration capability.
+Custom Thumbnail Generator manages image sizes via an AJAX interface. It decouples sizes from themes, ensuring they persist and remain functional.
 
 == Description ==
 
