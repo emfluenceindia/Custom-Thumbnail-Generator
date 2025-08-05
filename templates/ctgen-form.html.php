@@ -1,10 +1,20 @@
-<h1 class="ctgen-plugin-header">
-    <img src="<?php /* phpcs:disable PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */ echo esc_attr( CTGEN_LOGO ) ?>" alt="Custom Thumbnail Generator" />
-    <span><?php  esc_html_e( 'Custom Thumbnail Generator', 'custom-thumbnail-generator' ); ?></span>
-</h1>
-<hr />
-<?php esc_html_e( 'Custom Thumbnail Generator ensures that all custom thumbnail sizes defined through the plugin are registered and seamlessly integrated into the environment as long as the plugin remains active. They remain fully accessible and functional throughout the application, even when switching themes, providing a consistent image handling.', 'custom-thumbnail-generator' ); ?>
-
+<table class="ctgen-plugin-header-table">
+    <tr>
+        <td class="ctgen-plugin-header-logo">
+            <img src="<?php /* phpcs:disable PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage */ echo esc_attr( CTGEN_LOGO ) ?>" alt="Custom Thumbnail Generator" />
+        </td>
+        <td class="ctgen-plugin-header-title">
+            <h1>
+                <?php esc_html_e( 'Custom Thumbnail Generator', 'custom-thumbnail-generator' ); ?>
+                <hr />
+                <span><?php esc_html_e( 'The plugin registers and integrates all defined custom thumbnail sizes into the WordPress environment. These sizes remain globally accessible and functional, providing a consistent image handling system that persists across all themes.', 'custom-thumbnail-generator' ); ?></span>
+            </h1>
+            <p style="font-size:14px;">
+                
+            </p>
+        </td>
+    </tr>
+</table>    
 <div id="ctgen-action-container">
     <div id="ctgen-form-div">
         <fieldset class="ctgen-form-container">

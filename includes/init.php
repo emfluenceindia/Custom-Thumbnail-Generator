@@ -10,7 +10,7 @@
 
  define( 'WP_NATIVE_THUMB_SIZES', [ 'thumbnail', 'medium', 'medium_large', 'large' ] );
 
- define( 'CTGEN_LOGO', CTGEN_PLUGIN_DIR . 'assets/images/icon-64x64.png' );
+ define( 'CTGEN_LOGO', CTGEN_PLUGIN_DIR . 'assets/images/icon-80x80.png' );
 
  define( 'ALLOWED_TAGS', array(
   'form'     => [ 'action' => [], 'method' => [], 'id' => [], 'class' => [] ],
