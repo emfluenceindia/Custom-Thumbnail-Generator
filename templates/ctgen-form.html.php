@@ -7,7 +7,7 @@
             <h1>
                 <?php esc_html_e( 'Custom Thumbnail Generator', 'custom-thumbnail-generator' ); ?>
                 <hr />
-                <span><?php esc_html_e( 'The plugin registers and integrates all defined custom thumbnail sizes into the WordPress environment. These sizes remain globally accessible and functional, providing a consistent image handling system that persists across all themes.', 'custom-thumbnail-generator' ); ?></span>
+                <span><?php esc_html_e( 'The plugin registers and integrates all defined custom thumbnail sizes into the WordPress environment. They remain globally accessible and functional, providing a consistent image handling system that persists across all themes. In addition to that, it offers thumbnail regeneration capability as well.', 'custom-thumbnail-generator' ); ?></span>
             </h1>
             <p style="font-size:14px;">
                 

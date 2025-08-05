@@ -3,27 +3,29 @@
  * Plugin initialization
  */
 
- define( 'CTGEN_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
- define( 'CTGEN_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
- define( 'CTGEN_TEMPLATE_DIR', plugin_dir_path( __DIR__ ) . 'templates/' );
- define( 'CTGEN_PLUGIN_DIR', plugin_dir_url( __DIR__ ) );
+ if( ! defined( 'CTGEN_PLUGIN_PATH' ) ) define( 'CTGEN_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+ if( ! defined( 'CTGEN_PLUGIN_URL' ) ) define( 'CTGEN_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+ if( ! defined( 'CTGEN_TEMPLATE_DIR' ) ) define( 'CTGEN_TEMPLATE_DIR', plugin_dir_path( __DIR__ ) . 'templates/' );
+ if( ! defined( 'CTGEN_PLUGIN_DIR' ) ) define( 'CTGEN_PLUGIN_DIR', plugin_dir_url( __DIR__ ) );
 
- define( 'WP_NATIVE_THUMB_SIZES', [ 'thumbnail', 'medium', 'medium_large', 'large' ] );
+ if( ! defined( 'CTGEN_NATIVE_THUMB_SIZES' ) ) define( 'CTGEN_NATIVE_THUMB_SIZES', [ 'thumbnail', 'medium', 'medium_large', 'large' ] );
 
- define( 'CTGEN_LOGO', CTGEN_PLUGIN_DIR . 'assets/images/icon-80x80.png' );
+ if( ! defined( 'CTGEN_LOGO' ) ) define( 'CTGEN_LOGO', CTGEN_PLUGIN_DIR . 'assets/images/icon-80x80.png' );
 
- define( 'ALLOWED_TAGS', array(
-  'form'     => [ 'action' => [], 'method' => [], 'id' => [], 'class' => [] ],
-  'input'    => [ 'type' => [], 'name' => [], 'value' => [], 'checked' => [], 'id' => [], 'class' => [] ],
-  'select'   => [ 'name' => [], 'id' => [], 'class' => [] ],
-  'option'   => [ 'value' => [], 'selected' => [] ],
-  'textarea' => [ 'name' => [], 'id' => [], 'class' => [] ],
-  'label'    => [ 'for' => [], 'class' => [] ],
-  'div'      => [ 'class' => [], 'id' => [] ],
-  'span'     => [ 'class' => [] ],
-  'p'        => [],
-  'button'   => [ 'type' => [], 'class' => [], 'name' => [], 'value' => [] ]
- ) );
+ if( ! defined( 'CTGEN_ALLOWED_TAGS' ) ) {
+  define( 'CTGEN_ALLOWED_TAGS', array(
+    'form'     => [ 'action' => [], 'method' => [], 'id' => [], 'class' => [] ],
+    'input'    => [ 'type' => [], 'name' => [], 'value' => [], 'checked' => [], 'id' => [], 'class' => [] ],
+    'select'   => [ 'name' => [], 'id' => [], 'class' => [] ],
+    'option'   => [ 'value' => [], 'selected' => [] ],
+    'textarea' => [ 'name' => [], 'id' => [], 'class' => [] ],
+    'label'    => [ 'for' => [], 'class' => [] ],
+    'div'      => [ 'class' => [], 'id' => [] ],
+    'span'     => [ 'class' => [] ],
+    'p'        => [],
+    'button'   => [ 'type' => [], 'class' => [], 'name' => [], 'value' => [] ]
+  ) );
+ }
 
  require_once CTGEN_PLUGIN_PATH . 'settings-page.php';
  require_once CTGEN_PLUGIN_PATH . 'class-ctgen-functions.php';
@@ -43,7 +45,7 @@
     wp_enqueue_script(
       'ctgen-media-actions-script',
       CTGEN_PLUGIN_DIR . 'assets/js/ctgen-media-actions.min.js',
-      array( 'jquery' ), '1.0', true
+      array( 'jquery' ), CTGEN_PLUGIN_VERSION, true
     );
 
     /**
@@ -59,7 +61,7 @@
         'ctg-admin.css',
         CTGEN_PLUGIN_DIR .  'assets/css/ctgen-admin.min.css',
         null,
-        '1.0'
+        CTGEN_PLUGIN_VERSION
     );
 
     /** Enqueue FontSAwesome */

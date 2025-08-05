@@ -15,6 +15,13 @@
 
  if( ! defined( 'ABSPATH' ) ) exit;
 
+ add_action( 'admin_init', function() {
+   if( ! defined( 'CTGEN_PLUGIN_VERSION' ) ) {
+      $plugin_data = get_plugin_data( __FILE__ );
+      define( 'CTGEN_PLUGIN_VERSION', $plugin_data[ 'Version' ] );
+   }
+ } );
+ 
  require_once plugin_dir_path( __FILE__ ) . 'includes/init.php';
 
  /**

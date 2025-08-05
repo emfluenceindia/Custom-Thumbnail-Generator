@@ -72,7 +72,7 @@ class CTGEN_Functions {
 
     /** Display thumbnail source */
     private function ctgen_get_size_table_title( $slug ) {
-        if( in_array( $slug, WP_NATIVE_THUMB_SIZES ) ) {
+        if( in_array( $slug, CTGEN_NATIVE_THUMB_SIZES ) ) {
             $slug = wp_kses_post( "<span class='ctgen-image-size-register-by'>WordPress Core</span>" );
         } else {
             $slug = wp_kses_post( "<span class='ctgen-image-size-register-by'>" . wp_get_theme()->get( 'Name' ) ) . "</span>";
