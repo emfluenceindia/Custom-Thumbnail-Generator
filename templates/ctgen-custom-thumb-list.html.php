@@ -43,7 +43,7 @@
             </tr>
         </tbody>
     </table>
-    <?php if( ! empty( $sizes ) ) : ?>
+    <?php if( empty( $sizes ) ) : ?>
     <div id="ctgen-no-custom-sizes">
         <?php esc_html_e( 'You don\'t have any custom thumbnail sizes yet!', 'custom-thumbnail-generator' ); ?> 
         <a id="ctgen-btn-shift-focus"><?php esc_html_e( 'CREATE NOW', 'custom-thumbnail-generator' ); ?></a>.<br />
