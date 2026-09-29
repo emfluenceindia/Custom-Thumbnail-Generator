@@ -1,3 +1,5 @@
+<?php if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed early ?>
+
 <div id="ctgen-thumb-list">
     <h3><?php esc_html_e( 'Custom Thumbnails', 'custom-thumbnail-generator' ); ?></h3>
     <hr />

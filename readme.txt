@@ -2,9 +2,9 @@
 Contributors: subrataemfluence  
 Tags: thumbnails, media library, regenerate, custom image size, ajax  
 Requires at least: 6.5  
-Tested up to: 6.8  
-Requires PHP: 5.6  
-Stable tag: 1.0.0  
+Tested up to: 7.1.2
+Requires PHP: 7.0
+Stable tag: 1.0.2
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,13 @@ No. Option to remove any thumbnail size registered by a theme or WordPress core 
 No. There is absolutely no restriction on the number of thumbnail sizes. Unlimited number of thumbnail sizes can be registered and made avaialble across all themes.
 
 == Changelog ==
+
+= 1.0.2 =  
+* WordPress version compatibility  
+
+= 1.0.1 =  
+* WordPress version compatibility  
+* Small CSS modification  
 
 = 1.0.0 =  
 * Initial release  

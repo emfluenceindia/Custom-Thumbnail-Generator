@@ -90,10 +90,6 @@ class CTGEN_Functions {
             return;
         }
 
-        ob_start();
         include( $html_template );
-        $form_content = ob_get_clean();
-
-        return $form_content;
     }
 }

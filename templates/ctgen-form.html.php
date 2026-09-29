@@ -1,3 +1,5 @@
+<?php if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed early ?>
+
 <table class="ctgen-plugin-header-table">
     <tr>
         <td class="ctgen-plugin-header-logo">

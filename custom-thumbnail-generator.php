@@ -3,9 +3,10 @@
  * Plugin Name: Custom Thumbnail Generator
  * Plugin URI: https://github.com/emfluenceindia/Custom-Thumbnail-Generator
  * Description: Create theme-independent custom thumbnail sizes with Regenerate feature.
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: Subrata Sarkar
  * Author URI: https://profiles.wordpress.org/subrataemfluence
+ * Requires PHP: 7.0
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: custom-thumbnail-generator

@@ -1,4 +1,6 @@
 <?php
+if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed early
+
 /**
  * Plugin Settins Page. UI for user to create custom thumbnails
  */
@@ -23,8 +25,7 @@
     
     <div class="wrap">
         <?php
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $ctg_functions->ctgen_render_settings_page_form();
+        $ctg_functions->ctgen_render_settings_page_form();
         $ctg_functions->ctgen_render_default_thumbnail_list_table();
         ?>
     </div>
